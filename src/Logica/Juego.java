@@ -31,7 +31,7 @@ public class Juego implements Runnable {
 	public Juego(gameGUI gui) {
 		this.mapa = new Mapa(this);
 		this.gui = gui;
-		this.jugador = new Jugador();
+		this.jugador = new Jugador(this);
 		this.niveles = new Nivel[2];
 		this.niveles[0] = new Nivel_1();
 		this.niveles[1] = new Nivel_2();

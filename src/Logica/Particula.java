@@ -14,8 +14,8 @@ import Visitor.Visitor_particula;
 public class Particula extends Entidad{
 	protected int rango;
 	
-	public Particula(Grafico grafico) {
-//		super(punto_salida);
+	public Particula(Juego juego, Grafico grafico) {
+		super(juego);
 		// hola
 		this.visitor = new Visitor_particula(this);
 		this.movimiento = new Movimiento_vertical(this,Movimiento_vertical.ARRIBA);

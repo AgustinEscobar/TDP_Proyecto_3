@@ -10,11 +10,12 @@ public class Jugador extends Personaje {
 	protected Arma arma; // conceptual
 	protected int limite_izq, limite_der;
 
-	public Jugador() {
+	public Jugador(Juego juego) {
+		super(juego);
 		this.visitor = new Visitor_jugador(this);
 		this.grafico = new GraficoJugador();
 		this.carga_viral = 0;
-		arma = new Arma(new Proyectil_sanitario(this.grafico),this);
+		arma = new Arma(new Proyectil_sanitario(juego,this.grafico),this);
 		limite_der = Mapa.LIMITE_DER_X - this.grafico.getAncho();
 		limite_izq = Mapa.LIMITE_IZQ_X;
 		this.grafico.setLocation(limite_der / 2, Mapa.LIMITE_INFERIOR - grafico.getAlto() - 10);

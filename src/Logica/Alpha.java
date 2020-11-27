@@ -12,18 +12,18 @@ import Visitor.Visitor_alpha;
 
 public class Alpha extends Infectado {
 
-	public Alpha(Juego j) {
-		super(j);
+	public Alpha(Juego juego) {
+		super(juego);
 		this.visitor = new Visitor_alpha(this);
 		this.grafico = new GraficoAlpha();
 		Random ran = new Random();
 		int valor;
 		valor = ran.nextInt(3);
 		if (valor == 0) {
-			premio = new Efecto_temporal(this.grafico);
+			premio = new Efecto_temporal(juego,this.grafico);
 		} else {
 			if (valor == 1) {
-				premio = new Objeto_precioso(this.grafico);
+				premio = new Objeto_precioso(juego,this.grafico);
 			} else {
 				premio = null;
 			}

@@ -9,7 +9,8 @@ public abstract class Proyectil extends Entidad{
 	
 	protected int cap_desinfeccion;
 	
-	public Proyectil(Grafico grafico) {
+	public Proyectil(Juego juego,Grafico grafico) {
+		super(juego);
 		this.visitor = new Visitor_proyectil();
 		this.grafico = new GraficoProyectilSanitario();
 		this.grafico.setLocation(grafico.getX()+ this.grafico.getAncho()/2 , grafico.getY() - this.grafico.getAlto()-2);

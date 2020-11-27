@@ -62,18 +62,19 @@ public class gameGUI extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				Point posJugador = juego.getPlayer().getPosicion();
 				
-				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				int codigoTeclado = e.getKeyCode();
+				
+				if (codigoTeclado == KeyEvent.VK_LEFT || codigoTeclado == KeyEvent.VK_A) {
 					juego.getPlayer().moverAIzquierda();
 				}
-				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				if (codigoTeclado == KeyEvent.VK_RIGHT || codigoTeclado == KeyEvent.VK_D) {
 					juego.getPlayer().moverADerecha();
 				}
 				
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					System.out.println("keo");
+				if (codigoTeclado == KeyEvent.VK_SPACE) {
+					System.out.println("ahi va la bala");
 					//disparar de jugador tiene que retornar proyectil
                     juego.generarDisparo(jugador.disparar());
-                    System.out.print("as");
 				}
 				posJugador.setLocation(juego.getPlayer().get_x(), juego.getPlayer().get_y());
 				grafico_jugador.setLocation(posJugador);

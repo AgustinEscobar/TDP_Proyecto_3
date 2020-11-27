@@ -10,18 +10,18 @@ import Visitor.Visitor_beta;
 
 public class Beta extends Infectado {
 
-	public Beta(Juego j) {
-		super(j);
+	public Beta(Juego juego) {
+		super(juego);
 		this.visitor = new Visitor_beta(this);
 		this.grafico = new GraficoBeta();
 		Random ran = new Random();
 		int valor;
 		valor = ran.nextInt(3);
 		if (valor == 0) {
-			premio = new Efecto_temporal(this.grafico);
+			premio = new Efecto_temporal(juego,this.grafico);
 		} else {
 			if (valor == 1) {
-				premio = new Objeto_precioso(this.grafico);
+				premio = new Objeto_precioso(juego,this.grafico);
 			} else {
 				premio = null;
 			}

@@ -5,8 +5,8 @@ import Grafico.GraficoProyectilSanitario;
 
 public class Proyectil_sanitario extends Proyectil {
 
-	public Proyectil_sanitario(Grafico grafico_jugador) {
-		super(grafico_jugador);
+	public Proyectil_sanitario(Juego juego,Grafico grafico_jugador) {
+		super(juego,grafico_jugador);
 		this.grafico = new GraficoProyectilSanitario();
 		this.velocidad = 8;
 		this.cap_desinfeccion = 25;

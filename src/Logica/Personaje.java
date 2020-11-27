@@ -8,9 +8,9 @@ public abstract class Personaje extends Entidad{
 	protected float carga_viral;
 	protected Premio premio;
 	
-//	public Personaje(Point posicion) {
-//		super(posicion);
-//	}
+	public Personaje(Juego juego) {
+		super(juego);
+	}
 	
 	public Premio getPremio() {
 		return premio;

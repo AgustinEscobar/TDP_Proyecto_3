@@ -13,7 +13,8 @@ public abstract class Infectado extends Personaje {
 	protected Particula particula;
 	protected int cooldown; // duracion
 
-	public Infectado(Juego j) {
+	public Infectado(Juego juego) {
+		super(juego);
 		this.carga_viral = 100;
 		this.movimiento = new Movimiento_vertical(this,Movimiento_vertical.ABAJO);
 		cooldown = 45;
@@ -49,7 +50,7 @@ public abstract class Infectado extends Personaje {
 	}
 
 	public Particula lanzar_particula() {
-		return new Particula(this.grafico);
+		return new Particula(juego,this.grafico);
 	}
 
 	@Override

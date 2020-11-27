@@ -8,8 +8,8 @@ import Grafico.GraficoProyectilSanitarioPremio;
 public class Proyectil_sanitario_premio extends Proyectil{
 	
 	//relentiza tambien
-	public Proyectil_sanitario_premio(Grafico grafico) {
-		super(grafico);
+	public Proyectil_sanitario_premio(Juego juego, Grafico grafico) {
+		super(juego, grafico);
 		this.grafico = new GraficoProyectilSanitarioPremio();
 		this.velocidad = 10;
 		this.cap_desinfeccion= 40;	
