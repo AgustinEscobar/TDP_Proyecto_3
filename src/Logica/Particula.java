@@ -16,6 +16,7 @@ public class Particula extends Entidad{
 	
 	public Particula(Grafico grafico) {
 //		super(punto_salida);
+		// hola
 		this.visitor = new Visitor_particula(this);
 		this.movimiento = new Movimiento_vertical(this,Movimiento_vertical.ARRIBA);
 		this.grafico = new GraficoParticula();
