@@ -13,12 +13,10 @@ public abstract class Entidad {
 	protected Movimiento movimiento;
 	protected Comportamiento comportamiento;
 	protected Juego juego;
-//	protected Point posicion;
 	protected int velocidad;
 
 	protected Entidad(Juego juego) {
 		this.juego = juego;
-		//this.grafico.setLocation(posicion);
 	}
 	
 	public void setImagen(Grafico i) {
@@ -26,7 +24,7 @@ public abstract class Entidad {
 	}
 
 	public void aceptar(Visitor v) {
-
+		
 	}
 	
 	public void eliminar() {

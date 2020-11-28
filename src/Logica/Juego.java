@@ -144,7 +144,7 @@ public class Juego implements Runnable {
 			}
 			this.mapa.repaint();
 			try {
-				Thread.sleep(10);
+				Thread.sleep(1);
 			} catch (InterruptedException ex) {
 
 			}

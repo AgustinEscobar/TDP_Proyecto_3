@@ -2,6 +2,7 @@ package Logica;
 
 import java.util.Random;
 
+import Comportamiento.ComportamientoInfectado;
 import GUI.gameGUI;
 import Grafico.GraficoAlpha;
 import Movimiento.Movimiento_vertical;
@@ -16,14 +17,15 @@ public class Alpha extends Infectado {
 		super(juego);
 		this.visitor = new Visitor_alpha(this);
 		this.grafico = new GraficoAlpha();
+		this.danio = 15;
 		Random ran = new Random();
 		int valor;
 		valor = ran.nextInt(3);
 		if (valor == 0) {
-			premio = new Efecto_temporal(juego,this.grafico);
+			premio = new Efecto_temporal(juego);
 		} else {
 			if (valor == 1) {
-				premio = new Objeto_precioso(juego,this.grafico);
+				premio = new Objeto_precioso(juego);
 			} else {
 				premio = null;
 			}
@@ -45,5 +47,7 @@ public class Alpha extends Infectado {
 			}
 		}
 	}
+	
+	
 
 }

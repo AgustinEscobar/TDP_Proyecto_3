@@ -15,7 +15,6 @@ public abstract class Movimiento {
 	
 	public static final int ARRIBA = -1;
 	public static final int ABAJO = 1;
-	
 
 	public Movimiento(Entidad e, int direccion) {
 		this.entidad = e;
@@ -26,8 +25,7 @@ public abstract class Movimiento {
 	
 	// Movimiento del infectado.
 	protected void mover_aux_abajo(Point p, double x, double y) {
-		
-		System.out.println("MOVIMIENTO HACIA ABAJO");
+
 		if (y < Mapa.LIMITE_INFERIOR) {
 			p.setLocation(x, y);
 			entidad.getGrafico().setLocation(p);
@@ -38,14 +36,11 @@ public abstract class Movimiento {
 	
 	// !! Movimiento del proyectil.
 	protected void mover_aux_arriba(Point p, double x, double y) {
-		
-		System.out.print("MOVIMIENTO HACIA ARRIBA");
+
 		if (y > Mapa.LIMITE_SUPERIOR) {
 			p.setLocation(x, y);
 			entidad.getGrafico().setLocation(p);
 		} else {
-			// eliminar entidad
-			//setear_ubicacion_inicial(p);
 			entidad.eliminar();
 		}
 	}
@@ -61,4 +56,9 @@ public abstract class Movimiento {
 		double valor = r.nextInt(Mapa.LIMITE_DER_X - entidad.getGrafico().getAncho());
 		return valor;
 	}
+	
+	
+	
+	
+	
 }

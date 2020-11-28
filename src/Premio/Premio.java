@@ -1,5 +1,6 @@
 package Premio;
 
+import Comportamiento.Comportamiento;
 import Grafico.Grafico;
 import Grafico.GraficoPremio;
 import Logica.Entidad;
@@ -9,7 +10,7 @@ import Visitor.Visitor_premio;
 
 public abstract class Premio extends Entidad {
 
-	public Premio(Juego juego, Grafico grafico) {
+	public Premio(Juego juego) {
 		super(juego);
 		this.visitor = new Visitor_premio();
 		this.grafico = new GraficoPremio();
@@ -17,5 +18,7 @@ public abstract class Premio extends Entidad {
 		this.movimiento = new Movimiento_vertical_rapido(this,Movimiento_vertical_rapido.ABAJO);
 	}
 
-	public abstract Premio getPremio();
+	public Premio getPremio() {
+		return this;
+	}
 }

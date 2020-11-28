@@ -14,21 +14,22 @@ public class Beta extends Infectado {
 		super(juego);
 		this.visitor = new Visitor_beta(this);
 		this.grafico = new GraficoBeta();
+		this.danio = 15;
 		Random ran = new Random();
 		int valor;
 		valor = ran.nextInt(3);
 		if (valor == 0) {
-			premio = new Efecto_temporal(juego,this.grafico);
+			premio = new Efecto_temporal(juego);
 		} else {
 			if (valor == 1) {
-				premio = new Objeto_precioso(juego,this.grafico);
+				premio = new Objeto_precioso(juego);
 			} else {
 				premio = null;
 			}
 		}
 		valor = ran.nextInt(Mapa.LIMITE_DER_X);
 		this.grafico.setLocation(valor, Mapa.LIMITE_SUPERIOR);
-		this.velocidad = 5;
+		this.velocidad = 2;
 		this.letalidad = 10;
 	}
 

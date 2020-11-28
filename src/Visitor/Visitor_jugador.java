@@ -1,5 +1,7 @@
 package Visitor;
 
+import Estado.EstadoEfectoTemporal;
+import Estado.EstadoPremioPrecioso;
 import Logica.Alpha;
 import Logica.Beta;
 import Logica.Jugador;
@@ -14,23 +16,23 @@ public class Visitor_jugador extends Visitor {
 		this.jugador = jugador;
 	}
 
-	public void visit_alpha(Alpha a) {
-
+	public void visit_alpha(Alpha alpha) {
+		alpha.recibir_danio(jugador.getDanio());
 	}
 
-	public void visit_beta(Beta b) {
-
+	public void visit_beta(Beta beta) {
+		beta.recibir_danio(jugador.getDanio());
 	}
 
 	public void visit_particula(Particula p) {
-
+		jugador.recibir_danio(p.getInfectado().getDanio());
 	}
 
 	public void visit_premio_obj_precioso(Objeto_precioso o) {
-
+		jugador.setEstado(new EstadoPremioPrecioso());
 	}
 
 	public void visit_premio_obj_temporal(Efecto_temporal e) {
-
+		jugador.setEstado(new EstadoEfectoTemporal());
 	}
 }

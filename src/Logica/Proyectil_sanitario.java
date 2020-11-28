@@ -12,7 +12,6 @@ public class Proyectil_sanitario extends Proyectil {
 		this.cap_desinfeccion = 25;
 		this.grafico.setLocation(grafico_jugador.getX() + this.grafico.getAncho()/3 , grafico_jugador.getY()-this.grafico.getY()-30);
 		this.grafico.repaint();
-		System.out.println(grafico_jugador.getX() + this.grafico.getAncho()+" | "+grafico_jugador.getY());
 	}
 
 	@Override

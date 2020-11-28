@@ -11,6 +11,6 @@ public class Visitor_particula extends Visitor {
 	}
 
 	public void visit_jugador(Jugador j) {
-		
+		particula.eliminar();
 	}
 }

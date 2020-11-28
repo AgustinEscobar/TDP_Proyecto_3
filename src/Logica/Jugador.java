@@ -1,6 +1,7 @@
 package Logica;
 
-import GUI.gameGUI;
+import Estado.Estado;
+import Estado.EstadoNormal;
 import Grafico.GraficoJugador;
 import Premio.Premio;
 import Visitor.Visitor_jugador;
@@ -9,17 +10,21 @@ public class Jugador extends Personaje {
 
 	protected Arma arma; // conceptual
 	protected int limite_izq, limite_der;
+	protected Estado estado;
 
 	public Jugador(Juego juego) {
 		super(juego);
 		this.visitor = new Visitor_jugador(this);
 		this.grafico = new GraficoJugador();
 		this.carga_viral = 0;
+		this.danio = 35;
+		this.estado = new EstadoNormal();
 		arma = new Arma(new Proyectil_sanitario(juego,this.grafico),this);
 		limite_der = Mapa.LIMITE_DER_X - this.grafico.getAncho();
 		limite_izq = Mapa.LIMITE_IZQ_X;
 		this.grafico.setLocation(limite_der / 2, Mapa.LIMITE_INFERIOR - grafico.getAlto() - 10);
 		premio = null;
+		
 	}
 
 	@Override
@@ -33,6 +38,10 @@ public class Jugador extends Personaje {
 
 	public void setPremio(Premio m) {
 		this.premio = m;
+	}
+	
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	@Override

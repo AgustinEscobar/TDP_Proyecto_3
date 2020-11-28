@@ -50,7 +50,7 @@ public abstract class Infectado extends Personaje {
 	}
 
 	public Particula lanzar_particula() {
-		return new Particula(juego,this.grafico);
+		return new Particula(juego,this);
 	}
 
 	@Override
