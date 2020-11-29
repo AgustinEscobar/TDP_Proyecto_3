@@ -19,7 +19,7 @@ public class Particula extends Entidad{
 		// hola
 		this.infectado = infectado;
 		this.visitor = new Visitor_particula(this);
-		this.movimiento = new Movimiento_vertical(this,Movimiento_vertical.ARRIBA);
+		this.movimiento = new Movimiento_vertical(this,Movimiento_vertical.ABAJO);
 		this.grafico = new GraficoParticula();
 		this.grafico.setLocation(infectado.getGrafico().getX()+ this.grafico.getAncho()/2, infectado.getGrafico().getY() + this.grafico.getAlto()+2);
 		this.velocidad = 10;
@@ -32,7 +32,7 @@ public class Particula extends Entidad{
 
 	@Override
 	public void accionar() {
-		// TODO Auto-generated method stub
+		infectado.disparar();
 		movimiento.mover();
 	}
 

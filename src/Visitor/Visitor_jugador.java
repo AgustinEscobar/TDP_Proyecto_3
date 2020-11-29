@@ -17,10 +17,12 @@ public class Visitor_jugador extends Visitor {
 	}
 
 	public void visit_alpha(Alpha alpha) {
+		jugador.recibir_danio(alpha.getDanio());
 		alpha.recibir_danio(jugador.getDanio());
 	}
 
 	public void visit_beta(Beta beta) {
+		jugador.recibir_danio(beta.getDanio());
 		beta.recibir_danio(jugador.getDanio());
 	}
 

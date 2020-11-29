@@ -29,7 +29,7 @@ public class Alpha extends Infectado {
 			} else {
 				premio = null;
 			}
-		}
+		} 
 		valor = ran.nextInt(Mapa.LIMITE_DER_X);
 		this.grafico.setLocation(valor, Mapa.LIMITE_SUPERIOR);
 		this.velocidad = 1;
@@ -39,8 +39,8 @@ public class Alpha extends Infectado {
 	@Override
 	public void recibir_danio(float d) {
 		this.carga_viral -= d;
+		
 		if (carga_viral <= 0) {
-			
 			this.eliminar();
 		} else {
 			if (carga_viral < 20) {

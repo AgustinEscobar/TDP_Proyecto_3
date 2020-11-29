@@ -33,8 +33,8 @@ public class Juego implements Runnable {
 		this.gui = gui;
 		this.jugador = new Jugador(this);
 		this.niveles = new Nivel[2];
-		this.niveles[0] = new Nivel_1();
-		this.niveles[1] = new Nivel_2();
+		this.niveles[0] = new Nivel_1(this);
+		this.niveles[1] = new Nivel_2(this);
 		this.nivel_actual = 0;
 		this.entidadesActivas = new LinkedList<Entidad>();
 		this.entidadesInsertar = new LinkedList<Entidad>();
@@ -130,6 +130,9 @@ public class Juego implements Runnable {
 				for (Entidad colisiona2 : colision) {
 					e.aceptar(colisiona2.getVisitor());
 				}
+			}
+			for (Entidad e : entidadesInsertar) {
+				entidadesActivas.add(e);
 			}
 			
 			

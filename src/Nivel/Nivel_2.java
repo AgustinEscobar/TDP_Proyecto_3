@@ -6,10 +6,12 @@ import java.util.Random;
 import Logica.Alpha;
 import Logica.Beta;
 import Logica.Infectado;
+import Logica.Juego;
 
 public class Nivel_2 extends Nivel {
 
-	public Nivel_2() {
+	public Nivel_2(Juego j) {
+		super(j);
 		Random random;
 		int valor;
 		this.cant_infectados = 10;

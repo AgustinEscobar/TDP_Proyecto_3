@@ -10,6 +10,10 @@ public abstract class Nivel {
 	protected int cant_infectados;
 	protected List<Infectado> lista_infectados;
 	
+	public Nivel(Juego juego) {
+		this.juego=juego;
+	}
+	
 	public List<Infectado> get_lista_infectados(){
 		return lista_infectados;
 	}

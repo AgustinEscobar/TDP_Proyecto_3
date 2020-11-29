@@ -13,10 +13,12 @@ public class Visitor_proyectil extends Visitor{
 	}
 	
 	public void visit_beta(Beta beta) {
+		beta.recibir_danio(proyectil.getJuego().getPlayer().getDanio());
 		proyectil.eliminar();
 	}
 	
 	public void visit_alpha(Alpha alpha) {
+		alpha.recibir_danio(proyectil.getJuego().getPlayer().getDanio());
 		proyectil.eliminar();
 	}
 	

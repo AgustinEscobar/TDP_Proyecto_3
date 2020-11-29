@@ -58,32 +58,31 @@ public class GameGUI extends JFrame {
 
 		addKeyListener(new KeyAdapter() {
 			@Override
+			
 			public void keyPressed(KeyEvent e) {
 				Point posJugador = juego.getPlayer().getPosicion();
-
-				int codigoTeclado = e.getKeyCode();
-
-				if (codigoTeclado == KeyEvent.VK_LEFT || codigoTeclado == KeyEvent.VK_A) {
-					juego.getPlayer().moverAIzquierda();
+				if (juego.isJuego_activo()) {
+					int codigoTeclado = e.getKeyCode();
+	
+					if (codigoTeclado == KeyEvent.VK_LEFT || codigoTeclado == KeyEvent.VK_A) {
+						juego.getPlayer().moverAIzquierda();
+					}
+					if (codigoTeclado == KeyEvent.VK_RIGHT || codigoTeclado == KeyEvent.VK_D) {
+						juego.getPlayer().moverADerecha();
+					}
+	
+					posJugador.setLocation(juego.getPlayer().get_x(), juego.getPlayer().get_y());
+					grafico_jugador.setLocation(posJugador);
 				}
-				if (codigoTeclado == KeyEvent.VK_RIGHT || codigoTeclado == KeyEvent.VK_D) {
-					juego.getPlayer().moverADerecha();
-				}
-
-//				if (codigoTeclado == KeyEvent.VK_SPACE) {
-//					System.out.println("ahi va la bala, cabeceala");
-//					//disparar de jugador tiene que retornar proyectil
-//                    juego.generarDisparo(jugador.disparar());
-//				}
-				posJugador.setLocation(juego.getPlayer().get_x(), juego.getPlayer().get_y());
-				grafico_jugador.setLocation(posJugador);
 			}
 
 			public void keyReleased(KeyEvent e) {
 				int codigoTecla = e.getKeyCode();
-
-				if (codigoTecla == KeyEvent.VK_SPACE) {
-					juego.generarDisparo(jugador.disparar());
+				
+				if (juego.isJuego_activo()) {
+					if (codigoTecla == KeyEvent.VK_SPACE) {
+							juego.generarDisparo(jugador.disparar());
+					}
 				}
 
 			}

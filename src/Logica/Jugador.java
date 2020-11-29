@@ -17,8 +17,8 @@ public class Jugador extends Personaje {
 		super(juego);
 		this.visitor = new Visitor_jugador(this);
 		this.grafico = new GraficoJugador();
-		this.carga_viral = 0;
-		this.danio = 35;
+		this.carga_viral = 99;
+		this.danio = 10;
 		this.estado = new EstadoNormal();
 		arma = new Arma(new Proyectil_sanitario(juego,this.grafico),this);
 		limite_der = Mapa.LIMITE_DER_X - this.grafico.getAncho();
@@ -47,6 +47,11 @@ public class Jugador extends Personaje {
 	@Override
 	public void recibir_danio(float d) {
 		carga_viral += d;
+		System.out.println("Carga viral del Jugador" + carga_viral);
+		if (carga_viral >= 100) {
+			this.eliminar();
+			this.getJuego().setJuego_activo(false);
+		}
 	}
 
 	public Proyectil disparar() {

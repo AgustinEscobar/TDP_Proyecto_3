@@ -17,20 +17,6 @@ public abstract class Infectado extends Personaje {
 		this.carga_viral = 100;
 		this.movimiento = new Movimiento_vertical(this,Movimiento_vertical.ABAJO);
 		cooldown = 45;
-//		int valor;
-//		Random ran = new Random();
-//		valor = ran.nextInt(3);
-//		if (valor == 0) {
-//			premio = new Efecto_temporal(this.grafico);
-//		} else {
-//			if (valor == 1) {
-//				premio = new Objeto_precioso(this.grafico);
-//			} else {
-//				premio = null;
-//			}
-//		}
-//		valor = ran.nextInt(gameGUI.LIMITE_DER_X);
-//		this.grafico.setLocation(valor, gameGUI.LIMITE_SUPERIOR);
 		this.particula = null;
 	}
 
@@ -64,8 +50,10 @@ public abstract class Infectado extends Personaje {
 	}
 
 	public void disparar() {
+		Particula p;
 		if (this.cooldown == 0) {
-			lanzar_particula();
+			p= lanzar_particula();
+			p.insertar_entidad();
 			// TERMINAR
 		} else {
 			this.cooldown -= 1;
