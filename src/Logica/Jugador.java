@@ -4,6 +4,7 @@ import Estado.Estado;
 import Estado.EstadoNormal;
 import Grafico.GraficoJugador;
 import Premio.Premio;
+import Visitor.Visitor;
 import Visitor.Visitor_jugador;
 
 public class Jugador extends Personaje {
@@ -67,6 +68,12 @@ public class Jugador extends Personaje {
 	public void accionar() {
 		// ACTUALIZAR DISPARO
 		disparar();
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		v.visit_jugador(this);
+		
 	}
 
 }

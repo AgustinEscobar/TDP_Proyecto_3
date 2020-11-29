@@ -8,6 +8,7 @@ import Movimiento.Movimiento_vertical;
 import Movimiento.Movimiento_vertical_rapido;
 import Premio.Efecto_temporal;
 import Premio.Objeto_precioso;
+import Visitor.Visitor;
 import Visitor.Visitor_alpha;
 
 public class Alpha extends Infectado {
@@ -34,17 +35,24 @@ public class Alpha extends Infectado {
 		this.velocidad = 1;
 		this.letalidad = 25;
 	}
-
+	
 	@Override
 	public void recibir_danio(float d) {
 		this.carga_viral -= d;
 		if (carga_viral <= 0) {
-			// lo eliminamos
+			
+			this.eliminar();
 		} else {
 			if (carga_viral < 20) {
 				this.movimiento = new Movimiento_vertical_rapido(this,Movimiento_vertical_rapido.ABAJO);
 			}
 		}
+		//System.out.println("Quite vida a Alpha" + carga_viral + "vida restante");
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		v.visit_alpha(this);
 	}
 	
 	

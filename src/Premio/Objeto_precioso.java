@@ -4,6 +4,7 @@ import Comportamiento.Comportamiento;
 import Grafico.Grafico;
 import Grafico.GraficoPremio;
 import Logica.Juego;
+import Visitor.Visitor;
 
 public class Objeto_precioso extends Premio{
 
@@ -16,6 +17,12 @@ public class Objeto_precioso extends Premio{
 	@Override
 	public void accionar() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		v.visit_premio_obj_precioso(this);
 		
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import Grafico.Grafico;
 import Grafico.GraficoProyectilSanitarioPremio;
+import Visitor.Visitor;
 
 public class Proyectil_sanitario_premio extends Proyectil{
 	
@@ -19,6 +20,11 @@ public class Proyectil_sanitario_premio extends Proyectil{
 	@Override
 	public void accionar() {
 		movimiento.mover();
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		v.visit_proyectil_premio(this);
 	}
 	
 }

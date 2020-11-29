@@ -2,6 +2,7 @@ package Premio;
 
 import Grafico.GraficoPremio;
 import Logica.Juego;
+import Visitor.Visitor;
 
 public class Efecto_temporal extends Premio {
 
@@ -14,6 +15,12 @@ public class Efecto_temporal extends Premio {
 	@Override
 	public void accionar() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		v.visit_premio_obj_temporal(this);
 		
 	}
 

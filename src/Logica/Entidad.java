@@ -21,9 +21,9 @@ public abstract class Entidad {
 		grafico = img;
 	}
 
-	public void aceptar(Visitor visitor) {
+	public abstract void aceptar(Visitor v);
 		
-	}
+	
 	
 	public Visitor getVisitor() {
 		return visitor;

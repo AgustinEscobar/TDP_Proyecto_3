@@ -5,6 +5,7 @@ import java.util.Random;
 import Grafico.GraficoBeta;
 import Premio.Efecto_temporal;
 import Premio.Objeto_precioso;
+import Visitor.Visitor;
 import Visitor.Visitor_beta;
 
 public class Beta extends Infectado {
@@ -36,8 +37,15 @@ public class Beta extends Infectado {
 	public void recibir_danio(float d) {
 		carga_viral -= d * 0.15;
 		if (carga_viral <= 0) {
-//			this.getJuego().getMap().eliminarEntidad_activos(this);
+			this.eliminar();
 		}
+		//System.out.println("Quite vida a Beta" + carga_viral + "vida restante");
+
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		v.visit_beta(this);
 	}
 
 }

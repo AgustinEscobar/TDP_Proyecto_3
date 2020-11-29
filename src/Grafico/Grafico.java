@@ -1,5 +1,7 @@
 package Grafico;
 
+import java.awt.Rectangle;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -15,6 +17,7 @@ public abstract class Grafico extends JLabel {
 
 	public ImageIcon getGrafico() {
 		return grafico;
+		
 	}
 
 	public void setGrafico(ImageIcon grafico) {
@@ -47,5 +50,9 @@ public abstract class Grafico extends JLabel {
 	
 	public int getAncho() {
 		return ancho;
+	}
+	
+	public Rectangle getRectangle() {
+		return this.getBounds();
 	}
 }

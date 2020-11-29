@@ -2,6 +2,7 @@ package Logica;
 
 import Grafico.GraficoParticula;
 import Movimiento.Movimiento_vertical;
+import Visitor.Visitor;
 import Visitor.Visitor_particula;
 /*
  * debax : yo creo que esta clase no deberia tener un
@@ -33,5 +34,11 @@ public class Particula extends Entidad{
 	public void accionar() {
 		// TODO Auto-generated method stub
 		movimiento.mover();
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		v.visit_virus(this);
+		
 	}
 }

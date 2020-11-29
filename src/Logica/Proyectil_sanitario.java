@@ -2,6 +2,7 @@ package Logica;
 
 import Grafico.Grafico;
 import Grafico.GraficoProyectilSanitario;
+import Visitor.Visitor;
 
 public class Proyectil_sanitario extends Proyectil {
 
@@ -17,6 +18,11 @@ public class Proyectil_sanitario extends Proyectil {
 	@Override
 	public void accionar() {
 		movimiento.mover();
+	}
+
+	@Override
+	public void aceptar(Visitor v) {
+		v.visit_proyectil_sanitario(this);
 	}
 
 }

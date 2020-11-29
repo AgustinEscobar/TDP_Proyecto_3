@@ -58,13 +58,13 @@ public class Juego implements Runnable {
 		// this.mapa.repaint();
 	}
 
-	public Iterable<Entidad> detectarColisiones(Entidad entidad) {
+	public List<Entidad> detectarColisiones(Entidad entidad) {
 		List<Entidad> list_colisiones = new LinkedList<Entidad>();
 
 		for (Entidad e : entidadesActivas) {
 			if (entidad != e) {
-				if (e.getGrafico().getY() == entidad.getGrafico().getY()) {
-					
+				if (e.getGrafico().getRectangle().intersects(entidad.getGrafico().getRectangle())) {
+					list_colisiones.add(e);
 				}
 			}
 		}
@@ -116,7 +116,7 @@ public class Juego implements Runnable {
 	}
 
 	public void accionar() {
-
+		List<Entidad> colision= new LinkedList<Entidad>();
 		if (juego_activo) {
 			if (ganoJuego()) {
 				juego_activo = false;
@@ -124,7 +124,15 @@ public class Juego implements Runnable {
 
 			for (Entidad e : entidadesActivas) {
 				e.accionar();
+				colision=new LinkedList<Entidad>();
+				colision = this.detectarColisiones(e);
+				
+				for (Entidad colisiona2 : colision) {
+					e.aceptar(colisiona2.getVisitor());
+				}
 			}
+			
+			
 			// mapa.repaint();
 		}
 
@@ -145,7 +153,13 @@ public class Juego implements Runnable {
 	public void run() {
 		while (juego_activo) {
 			this.accionar();
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException ex) {
+
+			}
 			for (Entidad e : entidadesEliminar) {
+			
 				mapa.eliminar_Grafico(e.getGrafico()); // de mapa
 				entidadesActivas.remove(e);
 			}
@@ -154,12 +168,8 @@ public class Juego implements Runnable {
 				entidadesActivas.add(e);
 			}
 			entidadesInsertar = new LinkedList<Entidad>();
-			// this.mapa.repaint();
-			try {
-				Thread.sleep(5);
-			} catch (InterruptedException ex) {
-
-			}
+			this.mapa.repaint();
+			
 		}
 
 	}
