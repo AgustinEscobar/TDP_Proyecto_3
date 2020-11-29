@@ -13,7 +13,7 @@ public class Arma {
 	public Proyectil disparar() {
 		// crear un nuevo proyectil y ubicarlo en el mapa
 		proyectil = new Proyectil_sanitario(jugador.getJuego(),jugador.getGrafico());
-		//ubicarlo
+		//proyectil.insertar_entidad();
 		return proyectil;
 	}
 

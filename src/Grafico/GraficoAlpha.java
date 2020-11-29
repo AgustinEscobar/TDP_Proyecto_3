@@ -4,7 +4,7 @@ public class GraficoAlpha extends Grafico{
 
 	public GraficoAlpha() {
 		super();
-		imagenes = new String[] { "/Texturas/image.png" };
+		imagenes = new String[] { "/Texturas/alpha.png" };
 		this.setImagen(0);
 	}
 }

@@ -111,9 +111,6 @@ public class Juego implements Runnable {
 			for (Entidad e : entidadesActivas) {
 				e.accionar();
 			}
-
-			// this.entidadesInsertar = new LinkedList<Entidad>();
-
 		}
 		mapa.repaint();
 	}
@@ -131,20 +128,20 @@ public class Juego implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		while (juego_activo) {
 			this.accionar();
 			for (Entidad e : entidadesEliminar) {
 				mapa.eliminar_Grafico(e.getGrafico()); // de mapa
-				entidadesEliminar.remove(e);
+				entidadesActivas.remove(e);
 			}
+			entidadesEliminar = new LinkedList<Entidad>();
 			for (Entidad e : entidadesInsertar) {
 				entidadesActivas.add(e);
-				//mapa.insertarGrafico(e.getGrafico());
 			}
+			entidadesInsertar = new LinkedList<Entidad>();
 			this.mapa.repaint();
 			try {
-				Thread.sleep(1);
+				Thread.sleep(5);
 			} catch (InterruptedException ex) {
 
 			}

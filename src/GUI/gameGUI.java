@@ -22,7 +22,7 @@ public class gameGUI extends JFrame {
 	private Juego juego;
 	private JPanel contentPane;
 	private Mapa panelMapa;
-	
+
 	/*
 	 * Create the frame.
 	 */
@@ -42,11 +42,11 @@ public class gameGUI extends JFrame {
 		// ---------------- BARRA LATERAL DONDE VAN LAS OPCIONES ----------------
 		JPanel barra_opciones = new JPanel();
 		barra_opciones.setBounds(590, 0, 206, 571);
-		
+
 		contentPane.add(juego.getMap());
-		
+
 		contentPane.add(barra_opciones);
-				
+
 //		panelMapa = new Mapa();
 //		panelMapa.setBounds(0, 0, 591, 571);
 //		contentPane.add(panelMapa);
@@ -61,23 +61,32 @@ public class gameGUI extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				Point posJugador = juego.getPlayer().getPosicion();
-				
+
 				int codigoTeclado = e.getKeyCode();
-				
+
 				if (codigoTeclado == KeyEvent.VK_LEFT || codigoTeclado == KeyEvent.VK_A) {
 					juego.getPlayer().moverAIzquierda();
 				}
 				if (codigoTeclado == KeyEvent.VK_RIGHT || codigoTeclado == KeyEvent.VK_D) {
 					juego.getPlayer().moverADerecha();
 				}
-				
-				if (codigoTeclado == KeyEvent.VK_SPACE) {
-					System.out.println("ahi va la bala");
-					//disparar de jugador tiene que retornar proyectil
-                    juego.generarDisparo(jugador.disparar());
-				}
+
+//				if (codigoTeclado == KeyEvent.VK_SPACE) {
+//					System.out.println("ahi va la bala, cabeceala");
+//					//disparar de jugador tiene que retornar proyectil
+//                    juego.generarDisparo(jugador.disparar());
+//				}
 				posJugador.setLocation(juego.getPlayer().get_x(), juego.getPlayer().get_y());
 				grafico_jugador.setLocation(posJugador);
+			}
+
+			public void keyReleased(KeyEvent e) {
+				int codigoTecla = e.getKeyCode();
+
+				if (codigoTecla == KeyEvent.VK_SPACE) {
+					juego.generarDisparo(jugador.disparar());
+				}
+
 			}
 
 			@Override
@@ -107,7 +116,7 @@ public class gameGUI extends JFrame {
 	public int get_alto() {
 		return panelMapa.getHeight();
 	}
-	
+
 	public Mapa getPanelMapa() {
 		return panelMapa;
 	}
@@ -115,7 +124,6 @@ public class gameGUI extends JFrame {
 	public int get_ancho() {
 		return panelMapa.getWidth();
 	}
-	
 
 	/**
 	 * Launch the application. //
@@ -142,10 +150,9 @@ public class gameGUI extends JFrame {
 //			}
 //		});
 //	}
-	
-	
-	
+
 	public static void main(String[] args) {
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -154,6 +161,9 @@ public class gameGUI extends JFrame {
 				t.start();
 			}
 		});
+
 	}
-	
+
+
+
 }
