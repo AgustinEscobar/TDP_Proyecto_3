@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.EventQueue;
 import java.awt.Point;
 
 import javax.swing.JFrame;
@@ -17,7 +16,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-public class gameGUI extends JFrame {
+public class GameGUI extends JFrame {
 
 	private Juego juego;
 	private JPanel contentPane;
@@ -26,7 +25,7 @@ public class gameGUI extends JFrame {
 	/*
 	 * Create the frame.
 	 */
-	public gameGUI() {
+	public GameGUI() {
 		juego = new Juego(this);
 
 		Random random = new Random();
@@ -156,7 +155,7 @@ public class gameGUI extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				gameGUI g = new gameGUI();
+				GameGUI g = new GameGUI();
 				Thread t = new Thread(g.getJuego());
 				t.start();
 			}

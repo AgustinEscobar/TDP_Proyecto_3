@@ -24,7 +24,6 @@ public class Jugador extends Personaje {
 		limite_izq = Mapa.LIMITE_IZQ_X;
 		this.grafico.setLocation(limite_der / 2, Mapa.LIMITE_INFERIOR - grafico.getAlto() - 10);
 		premio = null;
-		
 	}
 
 	@Override
@@ -52,13 +51,12 @@ public class Jugador extends Personaje {
 	public Proyectil disparar() {
 		return arma.disparar();
 	}
-
 	public void moverADerecha() {
 		if (grafico.getX() < limite_der) {
 			grafico.setLocation(grafico.getX() + 6, grafico.getY());
 		}
 	}
-
+	
 	public void moverAIzquierda() {
 		if (grafico.getX() > limite_izq) {
 			grafico.setLocation(grafico.getX() - 6, grafico.getY());

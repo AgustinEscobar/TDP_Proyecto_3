@@ -2,29 +2,31 @@ package Logica;
 
 import java.awt.Point;
 
-import Comportamiento.Comportamiento;
 import Grafico.Grafico;
 import Movimiento.Movimiento;
 import Visitor.Visitor;
 
 public abstract class Entidad {
+	protected Juego juego;
 	protected Visitor visitor;
 	protected Grafico grafico;
 	protected Movimiento movimiento;
-	protected Comportamiento comportamiento;
-	protected Juego juego;
 	protected int velocidad;
 
 	protected Entidad(Juego juego) {
 		this.juego = juego;
 	}
 	
-	public void setImagen(Grafico i) {
-		grafico = i;
+	public void setImagen(Grafico img) {
+		grafico = img;
 	}
 
-	public void aceptar(Visitor v) {
+	public void aceptar(Visitor visitor) {
 		
+	}
+	
+	public Visitor getVisitor() {
+		return visitor;
 	}
 	
 	public void eliminar() {
@@ -49,14 +51,6 @@ public abstract class Entidad {
 
 	public int getVelocidad() {
 		return velocidad;
-	}
-
-	public Visitor getVisitor() {
-		return visitor;
-	}
-
-	public void setComportamiento(Comportamiento comportamiento) {
-		this.comportamiento = comportamiento;
 	}
 
 	public Movimiento getMovimiento() {

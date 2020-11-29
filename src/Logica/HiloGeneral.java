@@ -1,12 +1,12 @@
 package Logica;
 
-import GUI.gameGUI;
+import GUI.GameGUI;
 
 public class HiloGeneral extends Thread {
-	protected gameGUI game_gui;
+	protected GameGUI game_gui;
 	protected Juego juego;
 
-	public HiloGeneral(Juego juego, gameGUI game_gui) {
+	public HiloGeneral(Juego juego, GameGUI game_gui) {
 		/*
 		 * por cada iteracion del hilo accionar() para que cada entidad del juego
 		 * realice su comportamiento
@@ -16,7 +16,7 @@ public class HiloGeneral extends Thread {
 		this.start();
 	}
 	
-	public gameGUI getGame_gui() {
+	public GameGUI getGame_gui() {
 		return game_gui;
 	}
 	

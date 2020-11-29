@@ -2,7 +2,6 @@ package Logica;
 
 import java.util.Random;
 
-import GUI.gameGUI;
 import Movimiento.Movimiento_vertical;
 import Premio.Efecto_temporal;
 import Premio.Objeto_precioso;

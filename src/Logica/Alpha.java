@@ -3,7 +3,6 @@ package Logica;
 import java.util.Random;
 
 import Comportamiento.ComportamientoInfectado;
-import GUI.gameGUI;
 import Grafico.GraficoAlpha;
 import Movimiento.Movimiento_vertical;
 import Movimiento.Movimiento_vertical_rapido;

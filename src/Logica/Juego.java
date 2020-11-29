@@ -3,7 +3,7 @@ package Logica;
 import java.util.LinkedList;
 import java.util.List;
 
-import GUI.gameGUI;
+import GUI.GameGUI;
 import Nivel.Nivel;
 import Nivel.Nivel_1;
 import Nivel.Nivel_2;
@@ -15,7 +15,7 @@ import Nivel.Nivel_2;
  */
 public class Juego implements Runnable {
 	protected Mapa mapa;
-	protected gameGUI gui;
+	protected GameGUI gui;
 	protected Jugador jugador;
 
 	protected Nivel[] niveles;
@@ -28,7 +28,7 @@ public class Juego implements Runnable {
 
 	protected boolean juego_activo;
 
-	public Juego(gameGUI gui) {
+	public Juego(GameGUI gui) {
 		this.mapa = new Mapa(this);
 		this.gui = gui;
 		this.jugador = new Jugador(this);
@@ -44,11 +44,6 @@ public class Juego implements Runnable {
 		// this.hilo = new HiloGeneral(this, gui);
 	}
 
-	public void insertarEntidadActiva(Entidad entidad) {
-		this.entidadesActivas.add(entidad);
-		this.mapa.insertarGrafico(entidad.getGrafico()); // inserta el grafico de la entidad a la grafica
-	}
-
 	public void iniciarJuego() {
 		entidadesActivas.add(jugador);
 		mapa.insertarGrafico(jugador.getGrafico());
@@ -60,7 +55,26 @@ public class Juego implements Runnable {
 			entidadesActivas.add(i);
 			mapa.insertarGrafico(i.getGrafico());
 		}
-		this.mapa.repaint();
+		// this.mapa.repaint();
+	}
+
+	public Iterable<Entidad> detectarColisiones(Entidad entidad) {
+		List<Entidad> list_colisiones = new LinkedList<Entidad>();
+
+		for (Entidad e : entidadesActivas) {
+			if (entidad != e) {
+				if (e.getGrafico().getY() == entidad.getGrafico().getY()) {
+					
+				}
+			}
+		}
+
+		return list_colisiones;
+	}
+
+	public void insertarEntidadActiva(Entidad entidad) {
+		this.entidadesActivas.add(entidad);
+		this.mapa.insertarGrafico(entidad.getGrafico()); // inserta el grafico de la entidad a la grafica
 	}
 
 	public void insertarEntidad_a_Eliminar(Entidad e) {
@@ -75,7 +89,7 @@ public class Juego implements Runnable {
 		return jugador;
 	}
 
-	public gameGUI getGui() {
+	public GameGUI getGui() {
 		return gui;
 	}
 
@@ -111,8 +125,9 @@ public class Juego implements Runnable {
 			for (Entidad e : entidadesActivas) {
 				e.accionar();
 			}
+			// mapa.repaint();
 		}
-		mapa.repaint();
+
 	}
 
 	public void generarDisparo(Proyectil disparo) {
@@ -139,14 +154,14 @@ public class Juego implements Runnable {
 				entidadesActivas.add(e);
 			}
 			entidadesInsertar = new LinkedList<Entidad>();
-			this.mapa.repaint();
+			// this.mapa.repaint();
 			try {
 				Thread.sleep(5);
 			} catch (InterruptedException ex) {
 
 			}
 		}
-	
+
 	}
 
 }
