@@ -27,9 +27,9 @@ public class Beta extends Infectado {
 				premio = null;
 			}
 		}
-		valor = ran.nextInt(Mapa.LIMITE_DER_X);
+		valor = ran.nextInt(Mapa.LIMITE_DER_X-this.getGrafico().getAncho());
 		this.grafico.setLocation(valor, Mapa.LIMITE_SUPERIOR);
-		this.velocidad = 2;
+		this.velocidad = 1;
 		this.letalidad = 10;
 	}
 
@@ -37,7 +37,7 @@ public class Beta extends Infectado {
 	public void recibir_danio(float d) {
 		carga_viral -= d * 0.15;
 		if (carga_viral <= 0) {
-			this.eliminar();
+			juego.eliminar_infectado(this);
 		}
 		//System.out.println("Quite vida a Beta" + carga_viral + "vida restante");
 

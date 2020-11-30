@@ -21,4 +21,12 @@ public abstract class Nivel {
 	public  int get_cant_infectados() {
 		return cant_infectados;
 	}
+	
+	public boolean termino_nivel() {
+		return lista_infectados.size() == 0;	
+	}
+	
+	public void eliminar_infectado(Infectado inf) {
+		lista_infectados.remove(inf);
+	}
 }

@@ -13,7 +13,7 @@ public abstract class Proyectil extends Entidad{
 		super(juego);
 		this.visitor = new Visitor_proyectil(this);
 		this.grafico = new GraficoProyectilSanitario();
-		this.grafico.setLocation(grafico.getX()+ this.grafico.getAncho()/2 , grafico.getY() - this.grafico.getAlto()-2);
+		this.grafico.setLocation(grafico.getX(), grafico.getY());
 		this.movimiento = new Movimiento_vertical(this,Movimiento_vertical.ARRIBA);
 	}
 }

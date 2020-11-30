@@ -2,6 +2,7 @@ package Logica;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import GUI.GameGUI;
 import Nivel.Nivel;
@@ -52,8 +53,14 @@ public class Juego implements Runnable {
 		int cant_inf = niveles[nivel_actual].get_cant_infectados();
 
 		for (Infectado i : lista_infectados) {
-			entidadesActivas.add(i);
-			mapa.insertarGrafico(i.getGrafico());
+			Random r = new Random();
+			int ran = r.nextInt(2);
+			if (ran != 0) {
+				entidadesActivas.add(i);
+				mapa.insertarGrafico(i.getGrafico());
+			} else {
+				entidadesInsertar.add(i);
+			}
 		}
 		// this.mapa.repaint();
 	}
@@ -83,6 +90,11 @@ public class Juego implements Runnable {
 
 	public void insertarEntidad_a_Insertar(Entidad e) {
 		this.entidadesInsertar.add(e);
+	}
+	
+	public void eliminar_infectado(Infectado inf) {
+		niveles[nivel_actual].eliminar_infectado(inf);
+		this.insertarEntidad_a_Eliminar(inf);
 	}
 
 	public Jugador getPlayer() {
@@ -116,17 +128,26 @@ public class Juego implements Runnable {
 	}
 
 	public void accionar() {
-		List<Entidad> colision= new LinkedList<Entidad>();
+		List<Entidad> colision = new LinkedList<Entidad>();
 		if (juego_activo) {
 			if (ganoJuego()) {
 				juego_activo = false;
 			}
 
+			if (niveles[nivel_actual].termino_nivel()) {
+				this.avanzar_nivel();
+				List<Infectado> lista_infectados = niveles[nivel_actual].get_lista_infectados();
+				for (Infectado inf : lista_infectados) {
+					this.insertarEntidadActiva(inf);
+					
+				}
+			}
+
 			for (Entidad e : entidadesActivas) {
 				e.accionar();
-				colision=new LinkedList<Entidad>();
+				colision = new LinkedList<Entidad>();
 				colision = this.detectarColisiones(e);
-				
+
 				for (Entidad colisiona2 : colision) {
 					e.aceptar(colisiona2.getVisitor());
 				}
@@ -134,8 +155,7 @@ public class Juego implements Runnable {
 			for (Entidad e : entidadesInsertar) {
 				entidadesActivas.add(e);
 			}
-			
-			
+
 			// mapa.repaint();
 		}
 
@@ -162,17 +182,17 @@ public class Juego implements Runnable {
 
 			}
 			for (Entidad e : entidadesEliminar) {
-			
+
 				mapa.eliminar_Grafico(e.getGrafico()); // de mapa
 				entidadesActivas.remove(e);
 			}
 			entidadesEliminar = new LinkedList<Entidad>();
 			for (Entidad e : entidadesInsertar) {
-				entidadesActivas.add(e);
+				this.insertarEntidadActiva(e);
 			}
 			entidadesInsertar = new LinkedList<Entidad>();
 			this.mapa.repaint();
-			
+
 		}
 
 	}

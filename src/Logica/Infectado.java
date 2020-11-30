@@ -52,8 +52,8 @@ public abstract class Infectado extends Personaje {
 	public void disparar() {
 		Particula p;
 		if (this.cooldown == 0) {
-			p= lanzar_particula();
-			p.insertar_entidad();
+//			p= lanzar_particula();
+//			p.insertar_entidad();
 			// TERMINAR
 		} else {
 			this.cooldown -= 1;

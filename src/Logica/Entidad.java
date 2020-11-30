@@ -33,6 +33,8 @@ public abstract class Entidad {
 		juego.insertarEntidad_a_Eliminar(this);
 	}
 	
+
+	
 	public void insertar_entidad() {
 		juego.insertarEntidad_a_Insertar(this);
 	}

@@ -30,7 +30,7 @@ public class Alpha extends Infectado {
 				premio = null;
 			}
 		} 
-		valor = ran.nextInt(Mapa.LIMITE_DER_X);
+		valor = ran.nextInt(Mapa.LIMITE_DER_X-this.getGrafico().getAncho());
 		this.grafico.setLocation(valor, Mapa.LIMITE_SUPERIOR);
 		this.velocidad = 1;
 		this.letalidad = 25;
@@ -41,9 +41,9 @@ public class Alpha extends Infectado {
 		this.carga_viral -= d;
 		
 		if (carga_viral <= 0) {
-			this.eliminar();
+			juego.eliminar_infectado(this);
 		} else {
-			if (carga_viral < 20) {
+			if (carga_viral < 80) {
 				this.movimiento = new Movimiento_vertical_rapido(this,Movimiento_vertical_rapido.ABAJO);
 			}
 		}
