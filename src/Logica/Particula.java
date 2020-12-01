@@ -27,19 +27,17 @@ public class Particula extends Entidad {
 
 	@Override
 	public void accionar() {
-		if (rango == 0 || this.grafico.getY() >= Mapa.LIMITE_INFERIOR) {
+		if (rango == 0 || this.grafico.getLocation().getY() >= Mapa.LIMITE_INFERIOR) {
 			rango = 100;
 			this.eliminar();
 		} else {
 			rango -= 1;
 			movimiento.mover();
-			infectado.disparar();
 		}
 	}
 
 	@Override
 	public void aceptar(Visitor v) {
 		v.visit_virus(this);
-
 	}
 }

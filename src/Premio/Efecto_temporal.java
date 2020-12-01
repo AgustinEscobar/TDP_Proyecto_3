@@ -1,21 +1,18 @@
 package Premio;
 
-import Grafico.GraficoPremio;
+import Grafico.Grafico;
+import Grafico.GraficoPremioTemporal;
+import Logica.Infectado;
 import Logica.Juego;
 import Visitor.Visitor;
 
 public class Efecto_temporal extends Premio {
 
-	public Efecto_temporal(Juego juego) {
+	public Efecto_temporal(Juego juego,Infectado infectado) {
 		super(juego);
-		this.grafico = new GraficoPremio();
-		this.velocidad = 10;
-	}
-
-	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
+		this.grafico = new GraficoPremioTemporal();
+		Grafico graficoInfectado = infectado.getGrafico();
+		this.grafico.setLocation(graficoInfectado.getX(), graficoInfectado.getY());
 	}
 
 	@Override

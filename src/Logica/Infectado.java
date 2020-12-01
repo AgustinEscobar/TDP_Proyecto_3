@@ -1,6 +1,11 @@
 package Logica;
 
+import java.util.Random;
+
 import Movimiento.Movimiento_vertical;
+import Premio.Efecto_temporal;
+import Premio.Objeto_precioso;
+import Premio.Premio;
 
 public abstract class Infectado extends Personaje {
 
@@ -32,6 +37,21 @@ public abstract class Infectado extends Personaje {
 
 	public Particula lanzar_particula() {
 		return new Particula(juego, this);
+	}
+	
+	protected Premio premioRandom() {
+		Random ran = new Random();
+		int valor;
+		valor = ran.nextInt(5);
+		Premio retorno=null;
+		if (valor == 0) {
+			retorno= new Efecto_temporal(juego, this);
+		} else {
+			if (valor == 1) {
+				retorno = new Objeto_precioso(juego, this);
+			}
+		}
+		return retorno;
 	}
 
 	@Override

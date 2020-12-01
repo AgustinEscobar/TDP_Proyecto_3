@@ -25,7 +25,7 @@ public abstract class Movimiento {
 	
 	// Movimiento del infectado.
 	protected void mover_aux_abajo(Point p, double x, double y) {
-		if (y < Mapa.LIMITE_INFERIOR) {
+		if (y <= Mapa.LIMITE_INFERIOR) {
 			p.setLocation(x, y);
 			entidad.getGrafico().setLocation(p);
 		} else {

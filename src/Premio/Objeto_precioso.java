@@ -1,28 +1,23 @@
 package Premio;
 
-import Comportamiento.Comportamiento;
 import Grafico.Grafico;
-import Grafico.GraficoPremio;
+import Grafico.GraficoPremioPrecioso;
+import Logica.Infectado;
 import Logica.Juego;
 import Visitor.Visitor;
 
-public class Objeto_precioso extends Premio{
+public class Objeto_precioso extends Premio {
 
-	public Objeto_precioso(Juego juego) {
+	public Objeto_precioso(Juego juego,Infectado infectado) {
 		super(juego);
-		this.grafico = new GraficoPremio();
-		this.velocidad = 30;
-	}
-
-	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
+		this.grafico = new GraficoPremioPrecioso();
+		Grafico graficoInfectado = infectado.getGrafico();
+		this.grafico.setLocation(graficoInfectado.getX(), graficoInfectado.getY());
 	}
 
 	@Override
 	public void aceptar(Visitor v) {
 		v.visit_premio_obj_precioso(this);
-		
+
 	}
 }
