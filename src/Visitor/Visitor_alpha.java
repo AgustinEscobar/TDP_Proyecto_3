@@ -1,9 +1,6 @@
 package Visitor;
 
 import Logica.Alpha;
-import Logica.Beta;
-import Logica.Jugador;
-import Logica.Proyectil;
 
 public class Visitor_alpha extends Visitor{
 	

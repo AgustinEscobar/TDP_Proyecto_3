@@ -2,7 +2,6 @@ package Logica;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 import GUI.GameGUI;
 import Nivel.Nivel;
@@ -50,7 +49,7 @@ public class Juego implements Runnable {
 		mapa.insertarGrafico(jugador.getGrafico());
 		List<Infectado> lista_infectados = niveles[nivel_actual].getPrimerTanda();
 		for (Infectado i : lista_infectados) {
-			this.insertarEntidadActiva(i);
+			this.insertarEntidad(i);
 		}
 	}
 
@@ -68,22 +67,22 @@ public class Juego implements Runnable {
 		return list_colisiones;
 	}
 
-	public void insertarEntidadActiva(Entidad entidad) {
+	public void insertarEntidad(Entidad entidad) {
 		this.entidadesActivas.add(entidad);
 		this.mapa.insertarGrafico(entidad.getGrafico()); // inserta el grafico de la entidad a la grafica
 	}
 
-	public void insertarEntidad_a_Eliminar(Entidad e) {
+	public void eliminarLuego(Entidad e) {
 		this.entidadesEliminar.add(e);
 	}
 
-	public void insertarEntidad_a_Insertar(Entidad e) {
+	public void insertarLuego(Entidad e) {
 		this.entidadesInsertar.add(e);
 	}
 
 	public void eliminar_infectado(Infectado inf) {
 		niveles[nivel_actual].eliminar_infectado(inf);
-		this.insertarEntidad_a_Eliminar(inf);
+		this.eliminarLuego(inf);
 	}
 
 	public Jugador getPlayer() {
@@ -98,8 +97,8 @@ public class Juego implements Runnable {
 		return mapa;
 	}
 
-	public Nivel get_nivel_actual() {
-		return niveles[nivel_actual];
+	public int get_nivel_actual() {
+		return nivel_actual+1;
 	}
 
 	public void avanzar_nivel() {
@@ -107,9 +106,9 @@ public class Juego implements Runnable {
 			nivel_actual += 1;
 		}
 	}
-	
+
 	private boolean ganoJuego() {
-		return (nivel_actual+1 == niveles.length && niveles[nivel_actual].termino_nivel());
+		return nivel_actual + 1 == niveles.length && niveles[nivel_actual].termino_nivel();
 	}
 
 	public boolean isJuego_activo() {
@@ -122,7 +121,7 @@ public class Juego implements Runnable {
 
 	private void insertarInfectados(List<Infectado> lista) {
 		for (Infectado inf : lista) {
-			this.insertarEntidadActiva(inf);
+			this.insertarEntidad(inf);
 		}
 	}
 
@@ -133,6 +132,7 @@ public class Juego implements Runnable {
 			if (ganoJuego()) {
 				juego_activo = false;
 			}
+			// mejorar
 			if (niveles[nivel_actual].termino_nivel()) {
 				this.avanzar_nivel();
 				lista_infectados = niveles[nivel_actual].getPrimerTanda();
@@ -147,11 +147,10 @@ public class Juego implements Runnable {
 					}
 				}
 			}
-
+			//
 			for (Entidad e : entidadesActivas) {
 				e.accionar();
 				colision = this.detectarColisiones(e);
-
 				for (Entidad colisiona2 : colision) {
 					e.aceptar(colisiona2.getVisitor());
 				}
@@ -160,36 +159,32 @@ public class Juego implements Runnable {
 				entidadesActivas.add(e);
 			}
 		}
-
 	}
 
 	public void generarDisparo(Proyectil disparo) {
-		this.insertarEntidadActiva(disparo);
+		this.insertarLuego(disparo);
 	}
-	
+
 	@Override
 	public void run() {
-		while (juego_activo) {
-			this.accionar();
-			try {
+		try {
+			while (juego_activo) {
+				this.accionar();
 				Thread.sleep(5);
-			} catch (InterruptedException ex) {
-
+				for (Entidad e : entidadesEliminar) {
+					mapa.eliminar_Grafico(e.getGrafico());
+					entidadesActivas.remove(e);
+				}
+				entidadesEliminar = new LinkedList<Entidad>();
+				for (Entidad e : entidadesInsertar) {
+					this.insertarEntidad(e);
+				}
+				entidadesInsertar = new LinkedList<Entidad>();
+				this.mapa.repaint();
 			}
-			for (Entidad e : entidadesEliminar) {
-
-				mapa.eliminar_Grafico(e.getGrafico()); // de mapa
-				entidadesActivas.remove(e);
-			}
-			entidadesEliminar = new LinkedList<Entidad>();
-			for (Entidad e : entidadesInsertar) {
-				this.insertarEntidadActiva(e);
-			}
-			entidadesInsertar = new LinkedList<Entidad>();
-			this.mapa.repaint();
+		} catch (InterruptedException ex) {
 
 		}
-
 	}
 
 }

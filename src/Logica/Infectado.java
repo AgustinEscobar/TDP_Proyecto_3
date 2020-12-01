@@ -1,10 +1,6 @@
 package Logica;
 
-import java.util.Random;
-
 import Movimiento.Movimiento_vertical;
-import Premio.Efecto_temporal;
-import Premio.Objeto_precioso;
 
 public abstract class Infectado extends Personaje {
 
@@ -15,8 +11,8 @@ public abstract class Infectado extends Personaje {
 	public Infectado(Juego juego) {
 		super(juego);
 		this.carga_viral = 100;
-		this.movimiento = new Movimiento_vertical(this,Movimiento_vertical.ABAJO);
-		cooldown = 45;
+		this.movimiento = new Movimiento_vertical(this, Movimiento_vertical.ABAJO);
+		cooldown = 500;
 		this.particula = null;
 	}
 
@@ -35,7 +31,7 @@ public abstract class Infectado extends Personaje {
 	}
 
 	public Particula lanzar_particula() {
-		return new Particula(juego,this);
+		return new Particula(juego, this);
 	}
 
 	@Override
@@ -44,20 +40,19 @@ public abstract class Infectado extends Personaje {
 		// moverse
 		if (carga_viral > 0) {
 			this.mover();
-			disparar();
+			this.disparar();
 		}
-
 	}
 
 	public void disparar() {
 		Particula p;
 		if (this.cooldown == 0) {
-//			p= lanzar_particula();
-//			p.insertar_entidad();
+			p = lanzar_particula();
+			p.insertar_entidad();
 			// TERMINAR
+			this.cooldown = 500;
 		} else {
 			this.cooldown -= 1;
 		}
 	}
-
 }

@@ -30,13 +30,11 @@ public abstract class Entidad {
 	}
 	
 	public void eliminar() {
-		juego.insertarEntidad_a_Eliminar(this);
+		juego.eliminarLuego(this);
 	}
 	
-
-	
 	public void insertar_entidad() {
-		juego.insertarEntidad_a_Insertar(this);
+		juego.insertarLuego(this);
 	}
 	
 	public Grafico getGrafico() {

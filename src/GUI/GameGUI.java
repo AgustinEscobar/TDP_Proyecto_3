@@ -15,6 +15,7 @@ import Logica.Mapa;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
+import javax.swing.JLabel;
 
 public class GameGUI extends JFrame {
 
@@ -45,7 +46,12 @@ public class GameGUI extends JFrame {
 		contentPane.add(juego.getMap());
 
 		contentPane.add(barra_opciones);
-
+		barra_opciones.setLayout(null);
+		
+		JLabel nivelActual = new JLabel("Nivel actual: "+juego.get_nivel_actual());
+		nivelActual.setBounds(0, 5, 206, 38);
+		barra_opciones.add(nivelActual);
+		
 //		panelMapa = new Mapa();
 //		panelMapa.setBounds(0, 0, 591, 571);
 //		contentPane.add(panelMapa);
@@ -58,7 +64,6 @@ public class GameGUI extends JFrame {
 
 		addKeyListener(new KeyAdapter() {
 			@Override
-			
 			public void keyPressed(KeyEvent e) {
 				Point posJugador = juego.getPlayer().getPosicion();
 				if (juego.isJuego_activo()) {
@@ -70,21 +75,19 @@ public class GameGUI extends JFrame {
 					if (codigoTeclado == KeyEvent.VK_RIGHT || codigoTeclado == KeyEvent.VK_D) {
 						juego.getPlayer().moverADerecha();
 					}
-	
 					posJugador.setLocation(juego.getPlayer().get_x(), juego.getPlayer().get_y());
 					grafico_jugador.setLocation(posJugador);
 				}
 			}
 
 			public void keyReleased(KeyEvent e) {
+				nivelActual.setText("Nivel actual: "+juego.get_nivel_actual());
 				int codigoTecla = e.getKeyCode();
-				
 				if (juego.isJuego_activo()) {
 					if (codigoTecla == KeyEvent.VK_SPACE) {
 							juego.generarDisparo(jugador.disparar());
 					}
 				}
-
 			}
 
 			@Override
@@ -102,8 +105,6 @@ public class GameGUI extends JFrame {
 				}
 			}
 		});
-
-//		int valor = random.nextInt(LIMITE_DER_X);
 		this.setVisible(true);
 	}
 
