@@ -48,21 +48,10 @@ public class Juego implements Runnable {
 	public void iniciarJuego() {
 		entidadesActivas.add(jugador);
 		mapa.insertarGrafico(jugador.getGrafico());
-
-		List<Infectado> lista_infectados = niveles[nivel_actual].get_lista_infectados();
-		int cant_inf = niveles[nivel_actual].get_cant_infectados();
-
+		List<Infectado> lista_infectados = niveles[nivel_actual].getPrimerTanda();
 		for (Infectado i : lista_infectados) {
-			Random r = new Random();
-			int ran = r.nextInt(2);
-			if (ran != 0) {
-				entidadesActivas.add(i);
-				mapa.insertarGrafico(i.getGrafico());
-			} else {
-				entidadesInsertar.add(i);
-			}
+			this.insertarEntidadActiva(i);
 		}
-		// this.mapa.repaint();
 	}
 
 	public List<Entidad> detectarColisiones(Entidad entidad) {
@@ -91,7 +80,7 @@ public class Juego implements Runnable {
 	public void insertarEntidad_a_Insertar(Entidad e) {
 		this.entidadesInsertar.add(e);
 	}
-	
+
 	public void eliminar_infectado(Infectado inf) {
 		niveles[nivel_actual].eliminar_infectado(inf);
 		this.insertarEntidad_a_Eliminar(inf);
@@ -118,6 +107,10 @@ public class Juego implements Runnable {
 			nivel_actual += 1;
 		}
 	}
+	
+	private boolean ganoJuego() {
+		return (nivel_actual+1 == niveles.length && niveles[nivel_actual].termino_nivel());
+	}
 
 	public boolean isJuego_activo() {
 		return juego_activo;
@@ -127,25 +120,36 @@ public class Juego implements Runnable {
 		this.juego_activo = juego_activo;
 	}
 
+	private void insertarInfectados(List<Infectado> lista) {
+		for (Infectado inf : lista) {
+			this.insertarEntidadActiva(inf);
+		}
+	}
+
 	public void accionar() {
-		List<Entidad> colision = new LinkedList<Entidad>();
+		List<Entidad> colision;
+		List<Infectado> lista_infectados;
 		if (juego_activo) {
 			if (ganoJuego()) {
 				juego_activo = false;
 			}
-
 			if (niveles[nivel_actual].termino_nivel()) {
 				this.avanzar_nivel();
-				List<Infectado> lista_infectados = niveles[nivel_actual].get_lista_infectados();
-				for (Infectado inf : lista_infectados) {
-					this.insertarEntidadActiva(inf);
-					
+				lista_infectados = niveles[nivel_actual].getPrimerTanda();
+				if (lista_infectados != null) {
+					this.insertarInfectados(lista_infectados);
+				}
+			} else {
+				if (niveles[nivel_actual].terminoPrimerTanda()) {
+					lista_infectados = niveles[nivel_actual].getSegundaTanda();
+					if (lista_infectados != null) {
+						this.insertarInfectados(lista_infectados);
+					}
 				}
 			}
 
 			for (Entidad e : entidadesActivas) {
 				e.accionar();
-				colision = new LinkedList<Entidad>();
 				colision = this.detectarColisiones(e);
 
 				for (Entidad colisiona2 : colision) {
@@ -155,8 +159,6 @@ public class Juego implements Runnable {
 			for (Entidad e : entidadesInsertar) {
 				entidadesActivas.add(e);
 			}
-
-			// mapa.repaint();
 		}
 
 	}
@@ -164,14 +166,7 @@ public class Juego implements Runnable {
 	public void generarDisparo(Proyectil disparo) {
 		this.insertarEntidadActiva(disparo);
 	}
-
-	private boolean ganoJuego() {
-		// TODO cuando eliminamos todos los enemigos, ganar el nivel, si el nivel es el
-		// ultimo, ganar juego.
-
-		return false;
-	}
-
+	
 	@Override
 	public void run() {
 		while (juego_activo) {
