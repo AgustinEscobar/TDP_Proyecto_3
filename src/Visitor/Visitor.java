@@ -20,4 +20,5 @@ public abstract class Visitor {
 	public void visit_virus(Particula p) {}
 	public void visit_premio_obj_precioso(Objeto_precioso o) {}
 	public void visit_premio_obj_temporal(Efecto_temporal e) {}
+	
 }

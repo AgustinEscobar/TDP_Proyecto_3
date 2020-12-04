@@ -4,6 +4,7 @@ import Estado.EstadoEfectoTemporal;
 import Estado.EstadoPremioPrecioso;
 import Logica.Alpha;
 import Logica.Beta;
+import Logica.Entidad;
 import Logica.Jugador;
 import Premio.Efecto_temporal;
 import Premio.Objeto_precioso;
@@ -24,14 +25,21 @@ public class Visitor_jugador extends Visitor {
 		jugador.recibir_danio(beta.getDanio() / 90);
 		beta.recibir_danio(jugador.getDanio() / 90);
 	}
-
+	/**
+	 * vida
+	 */
 	public void visit_premio_obj_precioso(Objeto_precioso premio) {
 		jugador.setEstado(new EstadoPremioPrecioso(jugador));
 		premio.eliminar();
 	}
-
+	/**
+	 * bomba
+	 */
 	public void visit_premio_obj_temporal(Efecto_temporal premio) {
 		jugador.setEstado(new EstadoEfectoTemporal(jugador));
+		for (Entidad e : jugador.getJuego().entidades()) {
+			e.aceptar(premio.getVisitor());
+		}
 		premio.eliminar();
 	}
 }

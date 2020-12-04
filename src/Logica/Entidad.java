@@ -64,7 +64,11 @@ public abstract class Entidad {
 	public Point getPosicion() {
 		return this.grafico.getLocation();
 	}
-
+	
+	public void setMovimiento() {
+		
+	}
+	
 	public abstract void accionar();
 
 	/**

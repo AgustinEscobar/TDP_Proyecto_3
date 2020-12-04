@@ -44,7 +44,7 @@ public class Beta extends Infectado {
 		// System.out.println("Quite vida a Beta" + carga_viral + "vida restante");
 
 	}
-
+	
 	@Override
 	public void aceptar(Visitor v) {
 		v.visit_beta(this);

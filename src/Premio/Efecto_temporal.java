@@ -26,7 +26,7 @@ public class Efecto_temporal extends Premio {
 	@Override
 	public void aceptar(Visitor v) {
 		v.visit_premio_obj_temporal(this);
-
+	
 	}
 
 }

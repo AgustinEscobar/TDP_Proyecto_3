@@ -17,7 +17,6 @@ public class Juego implements Runnable {
 	protected Mapa mapa;
 	protected GameGUI gui;
 	protected Jugador jugador;
-
 	protected Nivel[] niveles;
 	protected int nivel_actual;
 	// protected HiloGeneral hilo;
@@ -36,6 +35,7 @@ public class Juego implements Runnable {
 		this.niveles[0] = new Nivel_1(this);
 		this.niveles[1] = new Nivel_2(this);
 		this.nivel_actual = 0;
+
 		this.entidadesActivas = new LinkedList<Entidad>();
 		this.entidadesInsertar = new LinkedList<Entidad>();
 		this.entidadesEliminar = new LinkedList<Entidad>();
@@ -52,7 +52,9 @@ public class Juego implements Runnable {
 			this.insertarEntidad(i);
 		}
 	}
+	
 
+	
 	public List<Entidad> detectarColisiones(Entidad entidad) {
 		List<Entidad> list_colisiones = new LinkedList<Entidad>();
 
@@ -80,6 +82,7 @@ public class Juego implements Runnable {
 		this.entidadesInsertar.add(e);
 	}
 
+	
 	public void eliminar_infectado(Infectado inf) {
 		niveles[nivel_actual].eliminar_infectado(inf);
 		this.eliminarLuego(inf);
@@ -164,6 +167,10 @@ public class Juego implements Runnable {
 	public void generarDisparo(Proyectil disparo) {
 		this.insertarLuego(disparo);
 	}
+	
+	public List<Entidad> entidades(){
+		return entidadesActivas;
+	}
 
 	@Override
 	public void run() {
@@ -186,5 +193,6 @@ public class Juego implements Runnable {
 
 		}
 	}
+	
 
 }

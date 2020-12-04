@@ -39,7 +39,11 @@ public class Jugador extends Personaje {
 	public void setPremio(Premio m) {
 		this.premio = m;
 	}
-
+	
+	public void setVidaCompleta() {
+		this.carga_viral=0;
+	}
+	
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}

@@ -3,6 +3,7 @@ package Logica;
 import java.util.Random;
 
 import Grafico.GraficoAlpha;
+import Movimiento.Movimiento_vertical;
 import Movimiento.Movimiento_vertical_rapido;
 import Premio.Efecto_temporal;
 import Premio.Objeto_precioso;
@@ -18,16 +19,6 @@ public class Alpha extends Infectado {
 		this.danio = 15;
 		Random ran = new Random();
 		int valor;
-//		valor = ran.nextInt(3);
-//		if (valor == 0) {
-//			premio = new Efecto_temporal(juego, this);
-//		} else {
-//			if (valor == 1) {
-//				premio = new Objeto_precioso(juego, this);
-//			} else {
-//				premio = null;
-//			}
-//		}
 		valor = ran.nextInt(Mapa.LIMITE_DER_X - this.getGrafico().getAncho());
 		this.grafico.setLocation(valor, Mapa.LIMITE_SUPERIOR);
 		this.velocidad = 1;
@@ -48,6 +39,14 @@ public class Alpha extends Infectado {
 				this.movimiento = new Movimiento_vertical_rapido(this, Movimiento_vertical_rapido.ABAJO);
 			}
 		}
+	}
+	
+	public void setMovimiento() {
+		if (carga_viral < 80) {
+			this.movimiento = new Movimiento_vertical_rapido(this, Movimiento_vertical_rapido.ABAJO);
+		}
+		else
+			this.movimiento= new Movimiento_vertical(this, Movimiento_vertical.ABAJO);
 	}
 
 	@Override

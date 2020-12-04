@@ -7,6 +7,7 @@ public class EstadoPremioPrecioso extends Estado{
 
 	public EstadoPremioPrecioso(Jugador jugador) {
 		super(jugador);
+		jugador.setVidaCompleta();
 	}
 
 	@Override
