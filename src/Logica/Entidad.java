@@ -17,6 +17,10 @@ public abstract class Entidad {
 		this.juego = juego;
 	}
 	
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+	
 	public void setImagen(Grafico img) {
 		grafico = img;
 	}

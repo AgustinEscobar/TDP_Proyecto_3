@@ -13,6 +13,10 @@ public abstract class Personaje extends Entidad{
 		super(juego);
 	}
 	
+	public void setDanho(float d) {
+		this.danio = d;
+	}
+	
 	public Premio getPremio() {
 		return premio;
 	}

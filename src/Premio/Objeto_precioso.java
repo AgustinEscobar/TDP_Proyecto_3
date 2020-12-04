@@ -6,9 +6,16 @@ import Logica.Infectado;
 import Logica.Juego;
 import Visitor.Visitor;
 
+/**
+ * Este tipo de premios le confiere al jugador poderes especiales. Se requiere
+ * por lo menos implementar uno de ellos, como puede ser una suerte “poción” que
+ * recupere la vida del jugador.
+ *
+ * 
+ */
 public class Objeto_precioso extends Premio {
 
-	public Objeto_precioso(Juego juego,Infectado infectado) {
+	public Objeto_precioso(Juego juego, Infectado infectado) {
 		super(juego);
 		this.grafico = new GraficoPremioPrecioso();
 		Grafico graficoInfectado = infectado.getGrafico();
@@ -18,6 +25,5 @@ public class Objeto_precioso extends Premio {
 	@Override
 	public void aceptar(Visitor v) {
 		v.visit_premio_obj_precioso(this);
-
 	}
 }

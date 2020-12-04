@@ -149,7 +149,7 @@ public class Juego implements Runnable {
 			}
 			//
 			for (Entidad e : entidadesActivas) {
-				e.accionar();
+				e.accionar(); // detectarColisiones
 				colision = this.detectarColisiones(e);
 				for (Entidad colisiona2 : colision) {
 					e.aceptar(colisiona2.getVisitor());

@@ -26,12 +26,12 @@ public class Visitor_jugador extends Visitor {
 	}
 
 	public void visit_premio_obj_precioso(Objeto_precioso premio) {
-		jugador.setEstado(new EstadoPremioPrecioso());
+		jugador.setEstado(new EstadoPremioPrecioso(jugador));
 		premio.eliminar();
 	}
 
 	public void visit_premio_obj_temporal(Efecto_temporal premio) {
-		jugador.setEstado(new EstadoEfectoTemporal());
+		jugador.setEstado(new EstadoEfectoTemporal(jugador));
 		premio.eliminar();
 	}
 }
