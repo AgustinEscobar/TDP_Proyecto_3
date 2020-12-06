@@ -2,6 +2,9 @@ package Estado;
 
 import Logica.Jugador;
 import Logica.Personaje;
+import Logica.Proyectil;
+import Logica.Proyectil_sanitario;
+
 /**
  * El jugador no se puede mover
  */
@@ -23,9 +26,14 @@ public class EstadoCongelado extends Estado{
 	}
 	
 	@Override
-	public void accionarEstado(Personaje jugador) {
+	public void accionarEstado(Jugador jugador) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Proyectil getProyectil() {
+		return new Proyectil_sanitario(jugador.getJuego(),jugador.getGrafico());
 	}
 
 }

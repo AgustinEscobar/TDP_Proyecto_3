@@ -9,7 +9,7 @@ public class Movimiento_vertical_rapido extends Movimiento_vertical {
 
 	public Movimiento_vertical_rapido(Entidad entidad, int direccion) {
 		super(entidad,direccion);
-		this.velocidad_extra = 6;
+		this.velocidad_extra = 1;
 		duracion = 20;
 	}
 
@@ -18,15 +18,11 @@ public class Movimiento_vertical_rapido extends Movimiento_vertical {
 		double x = p.getX();
 		double y = p.getY() + entidad.getVelocidad() * direccion + velocidad_extra;
 		
-		//this.mover_aux(p, x, y);
-		// !!
 		if (direccion == Movimiento_vertical.ABAJO) {
-			this.mover_aux_abajo(p, x, y);		
+			this.moverAbajo(p, x, y);		
 		}else {
-			mover_aux_arriba(p, x, y);
+			moverArriba(p, x, y);
 		}
-//		p.setLocation(x, y);
-//		entidad.getGrafico().setLocation(p);
 	}
 
 }

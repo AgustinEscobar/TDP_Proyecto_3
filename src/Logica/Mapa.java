@@ -31,7 +31,7 @@ public class Mapa extends JPanel {
 		
 		this.background = new JLabel();
 		this.background.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/fondo2.jpg")));
+		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/nivel1.jpg")));
 		this.add(background);
 		this.setComponentZOrder(this.background, 0);
 	

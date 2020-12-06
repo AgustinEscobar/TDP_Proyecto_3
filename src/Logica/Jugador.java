@@ -39,23 +39,30 @@ public class Jugador extends Personaje {
 	public void setPremio(Premio m) {
 		this.premio = m;
 	}
-	
+
 	public void setVidaCompleta() {
-		this.carga_viral=0;
+		this.carga_viral = 0;
 	}
-	
+
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 
 	@Override
-	public void recibir_danio(float d) {
+	public void recibirDanho(float d) {
 		carga_viral += d;
-		System.out.println("Carga viral del Jugador" + carga_viral);
 		if (carga_viral >= 100) {
 			this.eliminar();
 			this.getJuego().setJuego_activo(false);
 		}
+	}
+	
+	public Estado getEstado() {
+		return estado;
+	}
+	
+	public Arma getArma() {
+		return arma;
 	}
 
 	public Proyectil disparar() {
@@ -80,7 +87,8 @@ public class Jugador extends Personaje {
 
 	@Override
 	public void accionar() {
-		disparar();
+		this.disparar();
+		this.estado.accionarEstado();
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class Visitor_particula extends Visitor {
 	}
 
 	public void visit_jugador(Jugador jugador) {
-		jugador.recibir_danio(particula.getInfectado().getDanio());
+		jugador.recibirDanho(particula.getInfectado().getDanio());
 		particula.eliminar();
 	}
 }

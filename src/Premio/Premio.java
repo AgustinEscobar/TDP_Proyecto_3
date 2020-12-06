@@ -10,7 +10,7 @@ public abstract class Premio extends Entidad {
 
 	public Premio(Juego juego) {
 		super(juego);
-		this.visitor = new Visitor_premio(this);
+//		this.visitor = new Visitor_premio(this);
 		this.movimiento = new Movimiento_vertical(this, Movimiento_vertical.ABAJO);
 		this.velocidad = 1;
 	}

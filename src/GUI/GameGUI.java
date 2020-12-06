@@ -124,32 +124,6 @@ public class GameGUI extends JFrame {
 		return panelMapa.getWidth();
 	}
 
-	/**
-	 * Launch the application. //
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-////					SplashScreen splash = new SplashScreen(300);
-////					splash.showSplash();
-//					gameGUI frame = new gameGUI();
-//					
-//					//gameGUI g = new gameGUI();
-//					Thread t = new Thread();
-//					t.start();
-//					
-////					hilo = new HiloGeneral();
-////					game = hilo.getJuego();
-////					gameGUI frame = hilo.getGame_gui();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	public static void main(String[] args) {
 
 		SwingUtilities.invokeLater(new Runnable() {

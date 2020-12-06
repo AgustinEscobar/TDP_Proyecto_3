@@ -5,7 +5,6 @@ import Logica.Beta;
 import Logica.Proyectil;
 
 public class Visitor_proyectil extends Visitor{
-	
 	protected Proyectil proyectil;
 	
 	public Visitor_proyectil(Proyectil p) {
@@ -13,12 +12,12 @@ public class Visitor_proyectil extends Visitor{
 	}
 	
 	public void visit_beta(Beta beta) {
-		beta.recibir_danio(proyectil.getJuego().getPlayer().getDanio());
+		beta.recibirDanho(proyectil.getDesinfeccion());
 		proyectil.eliminar();
 	}
 	
 	public void visit_alpha(Alpha alpha) {
-		alpha.recibir_danio(proyectil.getJuego().getPlayer().getDanio());
+		alpha.recibirDanho(proyectil.getDesinfeccion());
 		proyectil.eliminar();
 	}
 	

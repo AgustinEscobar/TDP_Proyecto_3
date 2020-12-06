@@ -12,6 +12,7 @@ import Logica.Juego;
 public abstract class Nivel {
 	protected Juego juego;
 	protected int cant_infectados;
+	protected List<Infectado> [] arregloTandas;
 	protected List<Infectado> listaTanda1;
 	protected List<Infectado> listaTanda2;
 	protected int cantTandas;
@@ -27,6 +28,10 @@ public abstract class Nivel {
 		this.listaTanda2 = new LinkedList<Infectado>();
 		this.arrancoTanda1 = false;
 		this.arrancoTanda2 = false;
+	}
+	
+	public void accionarNivel() {
+		
 	}
 
 	public List<Infectado> getPrimerTanda() {

@@ -1,20 +1,17 @@
 package Logica;
 
-import java.awt.Point;
-
 import Grafico.Grafico;
 import Grafico.GraficoProyectilSanitarioPremio;
 import Visitor.Visitor;
 
-public class Proyectil_sanitario_premio extends Proyectil{
-	
-	//relentiza tambien
-	public Proyectil_sanitario_premio(Juego juego, Grafico grafico) {
-		super(juego, grafico);
+public class Proyectil_sanitario_premio extends Proyectil {
+
+	public Proyectil_sanitario_premio(Juego juego, Grafico grafico_jugador) {
+		super(juego, grafico_jugador);
 		this.grafico = new GraficoProyectilSanitarioPremio();
+		this.grafico.setLocation(grafico_jugador.getX() + this.grafico.getAncho() + 11, grafico_jugador.getY() - this.grafico.getY() - 30);
 		this.velocidad = 10;
-		this.cap_desinfeccion= 40;	
-		
+		this.desinfeccion = 40;
 	}
 
 	@Override
@@ -26,5 +23,5 @@ public class Proyectil_sanitario_premio extends Proyectil{
 	public void aceptar(Visitor v) {
 		v.visit_proyectil_premio(this);
 	}
-	
+
 }

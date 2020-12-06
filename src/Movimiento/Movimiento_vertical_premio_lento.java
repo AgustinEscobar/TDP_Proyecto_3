@@ -21,9 +21,9 @@ public class Movimiento_vertical_premio_lento extends Movimiento_vertical {
 		
 		// !!
 		if (direccion == Movimiento_vertical.ABAJO) {
-			this.mover_aux_abajo(p, x, y);		
+			this.moverAbajo(p, x, y);		
 		}else {
-			mover_aux_arriba(p, x, y);
+			this.moverArriba(p, x, y);
 		}
 		
 //		p.setLocation(x, y);

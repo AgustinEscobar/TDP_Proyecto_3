@@ -1,22 +1,25 @@
 package Estado;
 
-import Logica.Personaje;
+import Logica.Jugador;
+import Logica.Proyectil;
 
-/*
- * - atributo personaje
- * - dependiendo el tipo de efecto, vamos a castear
- * de personaje a infectado o jugador segun corresponda (ej: en estado premio precioso vamos
- * a castear a jugador y modificar el comportamiento de jugador, ya que en premio precioso
- * solo va a afectar al jugador)
- */
 public abstract class Estado {
-	protected Personaje personaje;
+	protected Jugador jugador;
+	protected int velocidadJugador;
 
-	public Estado(Personaje personaje) {
-		this.personaje = personaje;
+	public Estado(Jugador jugador) {
+		this.jugador = jugador;
 	}
 
-	public abstract void accionarEstado(Personaje jugador);
+	public int getVelocidadJugador() {
+		return velocidadJugador;
+	}
+	
+	public abstract Proyectil getProyectil();
+	
+	public void accionarEstado() {}
+	
+	public abstract void accionarEstado(Jugador jugador);
 
 	public abstract void cambiarEstado();
 }

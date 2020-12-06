@@ -1,9 +1,10 @@
 package Grafico;
 
-public class GraficoPremioTemporal extends Grafico{
+public class GraficoPremioTemporal extends Grafico {
+	
 	public GraficoPremioTemporal() {
 		super();
-		imagenes = new String[] { "/Texturas/Objeto_precioso.png" };
+		imagenes = new String[] { "/Texturas/premioCongelado.png" };
 		this.setImagen(0);
 	}
-}	
+}

@@ -17,14 +17,15 @@ public class Visitor_jugador extends Visitor {
 	}
 
 	public void visit_alpha(Alpha alpha) {
-		jugador.recibir_danio(alpha.getDanio() / 90);
-		alpha.recibir_danio(jugador.getDanio() / 90);
+		jugador.recibirDanho(alpha.getDanio() / 90);
+		alpha.recibirDanho(jugador.getDanio() / 90);
 	}
 
 	public void visit_beta(Beta beta) {
-		jugador.recibir_danio(beta.getDanio() / 90);
-		beta.recibir_danio(jugador.getDanio() / 90);
+		jugador.recibirDanho(beta.getDanio() / 90);
+		beta.recibirDanho(jugador.getDanio() / 90);
 	}
+
 	/**
 	 * vida
 	 */
@@ -32,6 +33,7 @@ public class Visitor_jugador extends Visitor {
 		jugador.setEstado(new EstadoPremioPrecioso(jugador));
 		premio.eliminar();
 	}
+
 	/**
 	 * bomba
 	 */

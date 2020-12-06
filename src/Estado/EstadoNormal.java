@@ -1,23 +1,28 @@
 package Estado;
 
 import Logica.Jugador;
-import Logica.Personaje;
+import Logica.Proyectil;
+import Logica.Proyectil_sanitario;
 
 public class EstadoNormal extends Estado {
 	
 	public EstadoNormal(Jugador jugador) {
 		super(jugador);
+		this.velocidadJugador = 6;
 	}
 
 	@Override
 	public void cambiarEstado() {
-		personaje.setVelocidad(personaje.getVelocidad()); //
+		jugador.setVelocidad(jugador.getVelocidad()); //
+	}
+	
+	@Override
+	public void accionarEstado(Jugador jugador) {
 	}
 
 	@Override
-	public void accionarEstado(Personaje jugador) {
-		// TODO Auto-generated method stub
-		
+	public Proyectil getProyectil() {
+		return new Proyectil_sanitario(jugador.getJuego(),jugador.getGrafico());
 	}
-
+	
 }

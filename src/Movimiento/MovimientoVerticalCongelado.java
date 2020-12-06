@@ -1,22 +1,22 @@
 package Movimiento;
 
 import Logica.Entidad;
+import Premio.Efecto_temporal;
 
 public class MovimientoVerticalCongelado extends Movimiento_vertical {
-	
-	protected static final int MAXDURACION= 1000;
+
 	protected int duracion;
-	
+
 	public MovimientoVerticalCongelado(Entidad e, int direccion) {
 		super(e, direccion);
-		duracion= MAXDURACION;
+		duracion = Efecto_temporal.MAXDURACION;
 	}
-	
+
 	public void mover() {
 		duracion--;
-		if (duracion==0) {
+		if (duracion == 0) {
 			this.entidad.setMovimiento();
 		}
 	}
-	
+
 }

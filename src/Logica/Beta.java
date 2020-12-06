@@ -32,7 +32,7 @@ public class Beta extends Infectado {
 	}
 
 	@Override
-	public void recibir_danio(float d) {
+	public void recibirDanho(float d) {
 		carga_viral -= d;// ACOMODAR
 		if (carga_viral <= 0) {
 			this.premio = this.premioRandom();

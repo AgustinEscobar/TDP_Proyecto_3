@@ -16,31 +16,29 @@ public abstract class Entidad {
 	protected Entidad(Juego juego) {
 		this.juego = juego;
 	}
-	
+
 	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;
 	}
-	
+
 	public void setImagen(Grafico img) {
 		grafico = img;
 	}
 
 	public abstract void aceptar(Visitor v);
-		
-	
-	
+
 	public Visitor getVisitor() {
 		return visitor;
 	}
-	
+
 	public void eliminar() {
 		juego.eliminarLuego(this);
 	}
-	
+
 	public void insertar_entidad() {
 		juego.insertarLuego(this);
 	}
-	
+
 	public Grafico getGrafico() {
 		return grafico;
 	}
@@ -64,11 +62,11 @@ public abstract class Entidad {
 	public Point getPosicion() {
 		return this.grafico.getLocation();
 	}
-	
+
 	public void setMovimiento() {
-		
+
 	}
-	
+
 	public abstract void accionar();
 
 	/**

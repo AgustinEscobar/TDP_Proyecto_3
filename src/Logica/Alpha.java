@@ -5,8 +5,6 @@ import java.util.Random;
 import Grafico.GraficoAlpha;
 import Movimiento.Movimiento_vertical;
 import Movimiento.Movimiento_vertical_rapido;
-import Premio.Efecto_temporal;
-import Premio.Objeto_precioso;
 import Visitor.Visitor;
 import Visitor.Visitor_alpha;
 
@@ -26,7 +24,7 @@ public class Alpha extends Infectado {
 	}
 
 	@Override
-	public void recibir_danio(float d) {
+	public void recibirDanho(float d) {
 		this.carga_viral -= d;
 		if (carga_viral <= 0) {
 			this.premio = this.premioRandom();
@@ -40,13 +38,12 @@ public class Alpha extends Infectado {
 			}
 		}
 	}
-	
+
 	public void setMovimiento() {
 		if (carga_viral < 80) {
 			this.movimiento = new Movimiento_vertical_rapido(this, Movimiento_vertical_rapido.ABAJO);
-		}
-		else
-			this.movimiento= new Movimiento_vertical(this, Movimiento_vertical.ABAJO);
+		} else
+			this.movimiento = new Movimiento_vertical(this, Movimiento_vertical.ABAJO);
 	}
 
 	@Override
