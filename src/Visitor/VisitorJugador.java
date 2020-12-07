@@ -6,13 +6,13 @@ import Logica.Alpha;
 import Logica.Beta;
 import Logica.Entidad;
 import Logica.Jugador;
-import Premio.Efecto_temporal;
-import Premio.Objeto_precioso;
+import Premio.EfectoTemporal;
+import Premio.ObjetoPrecioso;
 
-public class Visitor_jugador extends Visitor {
+public class VisitorJugador extends Visitor {
 	protected Jugador jugador;
 
-	public Visitor_jugador(Jugador jugador) {
+	public VisitorJugador(Jugador jugador) {
 		this.jugador = jugador;
 	}
 
@@ -29,7 +29,7 @@ public class Visitor_jugador extends Visitor {
 	/**
 	 * vida
 	 */
-	public void visit_premio_obj_precioso(Objeto_precioso premio) {
+	public void visit_premio_obj_precioso(ObjetoPrecioso premio) {
 		jugador.setEstado(new EstadoPremioPrecioso(jugador));
 		premio.eliminar();
 	}
@@ -37,7 +37,7 @@ public class Visitor_jugador extends Visitor {
 	/**
 	 * bomba
 	 */
-	public void visit_premio_obj_temporal(Efecto_temporal premio) {
+	public void visit_premio_obj_temporal(EfectoTemporal premio) {
 		jugador.setEstado(new EstadoEfectoTemporal(jugador));
 		for (Entidad e : jugador.getJuego().entidades()) {
 			e.aceptar(premio.getVisitor());

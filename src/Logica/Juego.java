@@ -5,8 +5,8 @@ import java.util.List;
 
 import GUI.GameGUI;
 import Nivel.Nivel;
-import Nivel.Nivel_1;
-import Nivel.Nivel_2;
+import Nivel.Nivel1;
+import Nivel.Nivel2;
 
 /*
  * -que el mapa se encargue de la grafica
@@ -32,8 +32,8 @@ public class Juego implements Runnable {
 		this.gui = gui;
 		this.jugador = new Jugador(this);
 		this.niveles = new Nivel[2];
-		this.niveles[0] = new Nivel_1(this);
-		this.niveles[1] = new Nivel_2(this);
+		this.niveles[0] = new Nivel1(this, 2);
+		this.niveles[1] = new Nivel2(this, 2);
 		this.nivel_actual = 0;
 
 		this.entidadesActivas = new LinkedList<Entidad>();
@@ -52,9 +52,7 @@ public class Juego implements Runnable {
 			this.insertarEntidad(i);
 		}
 	}
-	
 
-	
 	public List<Entidad> detectarColisiones(Entidad entidad) {
 		List<Entidad> list_colisiones = new LinkedList<Entidad>();
 
@@ -82,7 +80,6 @@ public class Juego implements Runnable {
 		this.entidadesInsertar.add(e);
 	}
 
-	
 	public void eliminar_infectado(Infectado inf) {
 		niveles[nivel_actual].eliminar_infectado(inf);
 		this.eliminarLuego(inf);
@@ -101,7 +98,7 @@ public class Juego implements Runnable {
 	}
 
 	public int get_nivel_actual() {
-		return nivel_actual+1;
+		return nivel_actual + 1;
 	}
 
 	public void avanzar_nivel() {
@@ -138,6 +135,7 @@ public class Juego implements Runnable {
 			// mejorar
 			if (niveles[nivel_actual].termino_nivel()) {
 				this.avanzar_nivel();
+				this.mapa.cambiarNivel(nivel_actual + 1);
 				lista_infectados = niveles[nivel_actual].getPrimerTanda();
 				if (lista_infectados != null) {
 					this.insertarInfectados(lista_infectados);
@@ -167,8 +165,8 @@ public class Juego implements Runnable {
 	public void generarDisparo(Proyectil disparo) {
 		this.insertarLuego(disparo);
 	}
-	
-	public List<Entidad> entidades(){
+
+	public List<Entidad> entidades() {
 		return entidadesActivas;
 	}
 
@@ -193,6 +191,5 @@ public class Juego implements Runnable {
 
 		}
 	}
-	
 
 }

@@ -2,10 +2,10 @@ package Visitor;
 
 import Premio.Premio;
 
-public class Visitor_premio extends Visitor {
+public class VisitorPremio extends Visitor {
 	protected Premio premio;
 
-	public Visitor_premio(Premio p) {
+	public VisitorPremio(Premio p) {
 		premio = p;
 	}
 }

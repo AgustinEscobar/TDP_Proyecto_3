@@ -15,10 +15,10 @@ import Visitor.visitorCuarentena;
  *
  * 
  */
-public class Efecto_temporal extends Premio {
+public class EfectoTemporal extends Premio {
 	public static final int MAXDURACION = 1000;
 	
-	public Efecto_temporal(Juego juego, Infectado infectado) {
+	public EfectoTemporal(Juego juego, Infectado infectado) {
 		super(juego);
 		this.grafico = new GraficoPremioTemporal();
 		Grafico graficoInfectado = infectado.getGrafico();

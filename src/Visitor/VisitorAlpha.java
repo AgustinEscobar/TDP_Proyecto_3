@@ -2,10 +2,10 @@ package Visitor;
 
 import Logica.Alpha;
 
-public class Visitor_alpha extends Visitor{	
+public class VisitorAlpha extends Visitor{	
 	protected Alpha alpha;
 	
-	public Visitor_alpha(Alpha alpha) {
+	public VisitorAlpha(Alpha alpha) {
 		this.alpha = alpha;
 	}
 }

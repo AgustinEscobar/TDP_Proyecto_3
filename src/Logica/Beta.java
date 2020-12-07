@@ -4,27 +4,17 @@ import java.util.Random;
 
 import Grafico.GraficoBeta;
 import Visitor.Visitor;
-import Visitor.Visitor_beta;
+import Visitor.VisitorBeta;
 
 public class Beta extends Infectado {
 
 	public Beta(Juego juego) {
 		super(juego);
-		this.visitor = new Visitor_beta(this);
+		this.visitor = new VisitorBeta(this);
 		this.grafico = new GraficoBeta();
 		this.danio = 15;
 		Random ran = new Random();
 		int valor;
-//		valor = ran.nextInt(3);
-//		if (valor == 0) {
-//			premio = new Efecto_temporal(juego, this);
-//		} else {
-//			if (valor == 1) {
-//				premio = new Objeto_precioso(juego, this);
-//			} else {
-//				premio = null;
-//			}
-//		}
 		valor = ran.nextInt(Mapa.LIMITE_DER_X - this.getGrafico().getAncho());
 		this.grafico.setLocation(valor, Mapa.LIMITE_SUPERIOR);
 		this.velocidad = 1;
@@ -33,7 +23,7 @@ public class Beta extends Infectado {
 
 	@Override
 	public void recibirDanho(float d) {
-		carga_viral -= d;// ACOMODAR
+		carga_viral -= d;
 		if (carga_viral <= 0) {
 			this.premio = this.premioRandom();
 			if (premio != null) {
@@ -41,8 +31,6 @@ public class Beta extends Infectado {
 			}
 			juego.eliminar_infectado(this);
 		}
-		// System.out.println("Quite vida a Beta" + carga_viral + "vida restante");
-
 	}
 	
 	@Override

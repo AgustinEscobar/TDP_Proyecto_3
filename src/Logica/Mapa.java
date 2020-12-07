@@ -18,35 +18,35 @@ public class Mapa extends JPanel {
 	protected int cantidadEnemigos;
 	protected JLabel background;
 	protected Juego juego;
-	
+
 	public Mapa(Juego juego) {
 		this.setLayout(null);
 		this.juego = juego;
-		
+
 		Dimension dim = new Dimension(591, 571);
 		setMinimumSize(dim);
 		setMaximumSize(dim);
 		setPreferredSize(dim);
 		setSize(dim);
-		
+
 		this.background = new JLabel();
 		this.background.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/nivel1.jpg")));
 		this.add(background);
 		this.setComponentZOrder(this.background, 0);
-	
+	}
+
+	public void cambiarNivel(int nivel) {
+		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/nivel" + nivel + ".jpg")));
 	}
 
 	public synchronized void insertarGrafico(Grafico g) {
 		this.add(g);
 		this.setComponentZOrder(g, 0);
 	}
-	
+
 	public synchronized void eliminar_Grafico(Grafico g) {
 		this.remove(g);
 		this.repaint();
 	}
-	
-	
-
 }

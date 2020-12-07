@@ -1,9 +1,9 @@
 package Logica;
 
 import Grafico.GraficoParticula;
-import Movimiento.Movimiento_vertical;
+import Movimiento.MovimientoVertical;
 import Visitor.Visitor;
-import Visitor.Visitor_particula;
+import Visitor.VisitorParticula;
 
 public class Particula extends Entidad {
 	protected Infectado infectado;
@@ -12,8 +12,8 @@ public class Particula extends Entidad {
 	public Particula(Juego juego, Infectado infectado) {
 		super(juego);
 		this.infectado = infectado;
-		this.visitor = new Visitor_particula(this);
-		this.movimiento = new Movimiento_vertical(this, Movimiento_vertical.ABAJO);
+		this.visitor = new VisitorParticula(this);
+		this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
 		this.grafico = new GraficoParticula();
 		this.grafico.setLocation(infectado.getGrafico().getX() + this.grafico.getAncho() / 2,
 				infectado.getGrafico().getY() + this.grafico.getAlto() + 2);

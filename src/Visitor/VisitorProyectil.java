@@ -4,10 +4,10 @@ import Logica.Alpha;
 import Logica.Beta;
 import Logica.Proyectil;
 
-public class Visitor_proyectil extends Visitor{
+public class VisitorProyectil extends Visitor{
 	protected Proyectil proyectil;
 	
-	public Visitor_proyectil(Proyectil p) {
+	public VisitorProyectil(Proyectil p) {
 		proyectil= p;
 	}
 	

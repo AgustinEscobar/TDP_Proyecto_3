@@ -3,16 +3,16 @@ package Logica;
 import java.util.Random;
 
 import Grafico.GraficoAlpha;
-import Movimiento.Movimiento_vertical;
-import Movimiento.Movimiento_vertical_rapido;
+import Movimiento.MovimientoVertical;
+import Movimiento.MovimientoVerticalRapido;
 import Visitor.Visitor;
-import Visitor.Visitor_alpha;
+import Visitor.VisitorAlpha;
 
 public class Alpha extends Infectado {
 
 	public Alpha(Juego juego) {
 		super(juego);
-		this.visitor = new Visitor_alpha(this);
+		this.visitor = new VisitorAlpha(this);
 		this.grafico = new GraficoAlpha();
 		this.danio = 15;
 		Random ran = new Random();
@@ -34,16 +34,16 @@ public class Alpha extends Infectado {
 			juego.eliminar_infectado(this);
 		} else {
 			if (carga_viral < 80) {
-				this.movimiento = new Movimiento_vertical_rapido(this, Movimiento_vertical_rapido.ABAJO);
+				this.movimiento = new MovimientoVerticalRapido(this, MovimientoVerticalRapido.ABAJO);
 			}
 		}
 	}
 
 	public void setMovimiento() {
 		if (carga_viral < 80) {
-			this.movimiento = new Movimiento_vertical_rapido(this, Movimiento_vertical_rapido.ABAJO);
+			this.movimiento = new MovimientoVerticalRapido(this, MovimientoVerticalRapido.ABAJO);
 		} else
-			this.movimiento = new Movimiento_vertical(this, Movimiento_vertical.ABAJO);
+			this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
 	}
 
 	@Override

@@ -11,28 +11,57 @@ import Logica.Juego;
 
 public abstract class Nivel {
 	protected Juego juego;
-	protected int cant_infectados;
-	protected List<Infectado> [] arregloTandas;
+	protected int cantInfectados;
 	protected List<Infectado> listaTanda1;
 	protected List<Infectado> listaTanda2;
-	protected int cantTandas;
 	//
 	protected boolean arrancoTanda1;
 	protected boolean arrancoTanda2;
 	//
-	
-	public Nivel(Juego juego) {
+//
+	protected List<Infectado>[] arregloTandas;
+	protected int tandaActual;
+	protected int totalInfectados;
+	protected boolean arrancoTanda;
+//
+
+	public Nivel(Juego juego, int cantTandas) {
 		this.juego = juego;
-		this.cantTandas = 2;
 		this.listaTanda1 = new LinkedList<Infectado>();
 		this.listaTanda2 = new LinkedList<Infectado>();
 		this.arrancoTanda1 = false;
 		this.arrancoTanda2 = false;
+
+		//
+		this.arregloTandas = (List<Infectado>[]) new List[cantTandas];
+		this.tandaActual = 0;
+		this.totalInfectados = 0;
+		this.arrancoTanda = false;
+		//
 	}
-	
+
+	// ---------------------MEJORA-NIVEL---------------------
+
 	public void accionarNivel() {
-		
+		if(!arrancoTanda) { //inserto los infectados a entidades
+			for(Infectado infectado : this.arregloTandas[tandaActual]) {
+				juego.insertarEntidad(infectado);
+			}
+			this.arrancoTanda = true;
+		}
 	}
+
+	public boolean terminoNivel() {
+		return this.cantInfectados == 0;
+	}
+
+	public void eliminarInfectado(Infectado infectado) {
+		if (!arregloTandas[tandaActual].isEmpty()) {
+			this.arregloTandas[tandaActual].remove(infectado);
+		}
+	}
+
+	// ------------------------------------------
 
 	public List<Infectado> getPrimerTanda() {
 		List<Infectado> retorno = null;
@@ -52,8 +81,8 @@ public abstract class Nivel {
 		return retorno;
 	}
 
-	public int get_cant_infectados() {
-		return cant_infectados;
+	public int getCantInfectados() {
+		return cantInfectados;
 	}
 
 	public boolean termino_nivel() {
@@ -74,6 +103,7 @@ public abstract class Nivel {
 			} else {
 				listaTanda.add(new Alpha(juego));
 			}
+			this.totalInfectados += 1;
 		}
 	}
 

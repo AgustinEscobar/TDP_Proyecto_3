@@ -5,7 +5,7 @@ import Grafico.GraficoPremioPrecioso;
 import Logica.Infectado;
 import Logica.Juego;
 import Visitor.Visitor;
-import Visitor.Visitor_premio;
+import Visitor.VisitorPremio;
 
 /**
  * Este tipo de premios le confiere al jugador poderes especiales. Se requiere
@@ -14,13 +14,13 @@ import Visitor.Visitor_premio;
  *
  * 
  */
-public class Objeto_precioso extends Premio {
+public class ObjetoPrecioso extends Premio {
 
-	public Objeto_precioso(Juego juego, Infectado infectado) {
+	public ObjetoPrecioso(Juego juego, Infectado infectado) {
 		super(juego);
 		this.grafico = new GraficoPremioPrecioso();
 		Grafico graficoInfectado = infectado.getGrafico();
-		this.visitor = new Visitor_premio(this);
+		this.visitor = new VisitorPremio(this);
 		this.grafico.setLocation(graficoInfectado.getX(), graficoInfectado.getY());
 	}
 

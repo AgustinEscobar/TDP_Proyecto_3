@@ -1,15 +1,15 @@
 package Movimiento;
 
 import Logica.Entidad;
-import Premio.Efecto_temporal;
+import Premio.EfectoTemporal;
 
-public class MovimientoVerticalCongelado extends Movimiento_vertical {
+public class MovimientoVerticalCongelado extends MovimientoVertical {
 
 	protected int duracion;
 
 	public MovimientoVerticalCongelado(Entidad e, int direccion) {
 		super(e, direccion);
-		duracion = Efecto_temporal.MAXDURACION;
+		duracion = EfectoTemporal.MAXDURACION;
 	}
 
 	public void mover() {

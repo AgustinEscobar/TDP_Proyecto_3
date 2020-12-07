@@ -4,9 +4,9 @@ import Grafico.Grafico;
 import Grafico.GraficoProyectilSanitario;
 import Visitor.Visitor;
 
-public class Proyectil_sanitario extends Proyectil {
+public class ProyectilSanitario extends Proyectil {
 
-	public Proyectil_sanitario(Juego juego,Grafico grafico_jugador) {
+	public ProyectilSanitario(Juego juego,Grafico grafico_jugador) {
 		super(juego,grafico_jugador);
 		this.grafico = new GraficoProyectilSanitario();
 		this.velocidad = 8;

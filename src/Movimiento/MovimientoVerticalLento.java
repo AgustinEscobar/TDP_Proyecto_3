@@ -5,9 +5,9 @@ import java.awt.Point;
 import Logica.Entidad;
 
 // relentiza los oponentes
-public class Movimiento_vertical_premio_lento extends Movimiento_vertical {
+public class MovimientoVerticalLento extends MovimientoVertical {
 
-	public Movimiento_vertical_premio_lento(Entidad entidad,int direccion) {
+	public MovimientoVerticalLento(Entidad entidad,int direccion) {
 		super(entidad,direccion);
 		velocidad_extra = 6;
 	}
@@ -20,7 +20,7 @@ public class Movimiento_vertical_premio_lento extends Movimiento_vertical {
 		//this.mover_aux(p, x, y);
 		
 		// !!
-		if (direccion == Movimiento_vertical.ABAJO) {
+		if (direccion == MovimientoVertical.ABAJO) {
 			this.moverAbajo(p, x, y);		
 		}else {
 			this.moverArriba(p, x, y);

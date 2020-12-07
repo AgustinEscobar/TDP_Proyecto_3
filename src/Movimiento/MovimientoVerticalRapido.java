@@ -4,10 +4,10 @@ import java.awt.Point;
 
 import Logica.Entidad;
 
-public class Movimiento_vertical_rapido extends Movimiento_vertical {
+public class MovimientoVerticalRapido extends MovimientoVertical {
 	
 
-	public Movimiento_vertical_rapido(Entidad entidad, int direccion) {
+	public MovimientoVerticalRapido(Entidad entidad, int direccion) {
 		super(entidad,direccion);
 		this.velocidad_extra = 1;
 		duracion = 20;
@@ -18,7 +18,7 @@ public class Movimiento_vertical_rapido extends Movimiento_vertical {
 		double x = p.getX();
 		double y = p.getY() + entidad.getVelocidad() * direccion + velocidad_extra;
 		
-		if (direccion == Movimiento_vertical.ABAJO) {
+		if (direccion == MovimientoVertical.ABAJO) {
 			this.moverAbajo(p, x, y);		
 		}else {
 			moverArriba(p, x, y);

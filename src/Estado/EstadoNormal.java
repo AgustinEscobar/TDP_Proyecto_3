@@ -2,7 +2,7 @@ package Estado;
 
 import Logica.Jugador;
 import Logica.Proyectil;
-import Logica.Proyectil_sanitario;
+import Logica.ProyectilSanitario;
 
 public class EstadoNormal extends Estado {
 	
@@ -22,7 +22,7 @@ public class EstadoNormal extends Estado {
 
 	@Override
 	public Proyectil getProyectil() {
-		return new Proyectil_sanitario(jugador.getJuego(),jugador.getGrafico());
+		return new ProyectilSanitario(jugador.getJuego(),jugador.getGrafico());
 	}
 	
 }

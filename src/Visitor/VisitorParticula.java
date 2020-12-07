@@ -3,10 +3,10 @@ package Visitor;
 import Logica.Jugador;
 import Logica.Particula;
 
-public class Visitor_particula extends Visitor {
+public class VisitorParticula extends Visitor {
 	protected Particula particula;
 
-	public Visitor_particula(Particula particula) {
+	public VisitorParticula(Particula particula) {
 		this.particula = particula;
 	}
 

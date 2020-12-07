@@ -4,9 +4,9 @@ import java.awt.Point;
 
 import Logica.Entidad;
 
-public class Movimiento_vertical extends Movimiento {
+public class MovimientoVertical extends Movimiento {
 
-	public Movimiento_vertical(Entidad e, int direccion) {
+	public MovimientoVertical(Entidad e, int direccion) {
 		super(e, direccion);
 		this.duracion = 5;
 	}
@@ -20,7 +20,7 @@ public class Movimiento_vertical extends Movimiento {
 			double y = p.getY() + entidad.getVelocidad() * direccion;
 			
 			// !!
-			if (direccion == Movimiento_vertical.ABAJO) {
+			if (direccion == MovimientoVertical.ABAJO) {
 				this.moverAbajo(p, x, y);		
 			}else {
 				this.moverArriba(p, x, y);

@@ -2,16 +2,16 @@ package Estado;
 
 import Logica.Jugador;
 import Logica.Proyectil;
-import Logica.Proyectil_sanitario_premio;
-import Premio.Efecto_temporal;
+import Logica.ProyectilSanitarioPremio;
+import Premio.EfectoTemporal;
 
 public class EstadoEfectoTemporal extends Estado {
 	protected int cooldown;
 
 	public EstadoEfectoTemporal(Jugador jugador) {
 		super(jugador);
-		jugador.getArma().setProyectil(new Proyectil_sanitario_premio(jugador.getJuego(), jugador.getGrafico()));
-		this.cooldown = Efecto_temporal.MAXDURACION;
+		jugador.getArma().setProyectil(new ProyectilSanitarioPremio(jugador.getJuego(), jugador.getGrafico()));
+		this.cooldown = EfectoTemporal.MAXDURACION;
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class EstadoEfectoTemporal extends Estado {
 	
 	@Override
 	public Proyectil getProyectil() {
-		return new Proyectil_sanitario_premio(jugador.getJuego(),jugador.getGrafico());
+		return new ProyectilSanitarioPremio(jugador.getJuego(),jugador.getGrafico());
 	}
 
 }

@@ -134,9 +134,6 @@ public class GameGUI extends JFrame {
 				t.start();
 			}
 		});
-
 	}
-
-
 
 }

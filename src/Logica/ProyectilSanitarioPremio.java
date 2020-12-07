@@ -4,9 +4,9 @@ import Grafico.Grafico;
 import Grafico.GraficoProyectilSanitarioPremio;
 import Visitor.Visitor;
 
-public class Proyectil_sanitario_premio extends Proyectil {
+public class ProyectilSanitarioPremio extends Proyectil {
 
-	public Proyectil_sanitario_premio(Juego juego, Grafico grafico_jugador) {
+	public ProyectilSanitarioPremio(Juego juego, Grafico grafico_jugador) {
 		super(juego, grafico_jugador);
 		this.grafico = new GraficoProyectilSanitarioPremio();
 		this.grafico.setLocation(grafico_jugador.getX() + this.grafico.getAncho() + 11, grafico_jugador.getY() - this.grafico.getY() - 30);

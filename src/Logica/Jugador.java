@@ -5,7 +5,7 @@ import Estado.EstadoNormal;
 import Grafico.GraficoJugador;
 import Premio.Premio;
 import Visitor.Visitor;
-import Visitor.Visitor_jugador;
+import Visitor.VisitorJugador;
 
 public class Jugador extends Personaje {
 
@@ -15,12 +15,12 @@ public class Jugador extends Personaje {
 
 	public Jugador(Juego juego) {
 		super(juego);
-		this.visitor = new Visitor_jugador(this);
+		this.visitor = new VisitorJugador(this);
 		this.grafico = new GraficoJugador();
 		this.carga_viral = 0;
 		this.danio = 100;
 		this.estado = new EstadoNormal(this);
-		arma = new Arma(new Proyectil_sanitario(juego, this.grafico), this);
+		arma = new Arma(new ProyectilSanitario(juego, this.grafico), this);
 		limite_der = Mapa.LIMITE_DER_X - this.grafico.getAncho();
 		limite_izq = Mapa.LIMITE_IZQ_X;
 		this.grafico.setLocation(limite_der / 2, Mapa.LIMITE_INFERIOR - grafico.getAlto() - 10);
