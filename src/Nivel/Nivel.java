@@ -43,12 +43,19 @@ public abstract class Nivel {
 	// ---------------------MEJORA-NIVEL---------------------
 
 	public void accionarNivel() {
-		if(!arrancoTanda) { //inserto los infectados a entidades
-			for(Infectado infectado : this.arregloTandas[tandaActual]) {
-				juego.insertarEntidad(infectado);
+		if ( tandaActual != arregloTandas.length &&  arregloTandas[tandaActual].isEmpty()) {
+			// avanzo a la siguiente tanda
+			this.arrancoTanda = false;
+			tandaActual += 1;
+		}
+		if (!arrancoTanda && tandaActual != arregloTandas.length) { // inserto los infectados a entidades
+			
+			for (Infectado infectado : this.arregloTandas[tandaActual]) {
+				juego.insertarLuego(infectado);
 			}
 			this.arrancoTanda = true;
 		}
+
 	}
 
 	public boolean terminoNivel() {
@@ -56,42 +63,44 @@ public abstract class Nivel {
 	}
 
 	public void eliminarInfectado(Infectado infectado) {
-		if (!arregloTandas[tandaActual].isEmpty()) {
+		System.out.println("Tanda actual (eliminarInfectado.nivel: "+tandaActual);
+		if (tandaActual < arregloTandas.length &&  !arregloTandas[tandaActual].isEmpty()) {
 			this.arregloTandas[tandaActual].remove(infectado);
+			this.cantInfectados -= 1;
 		}
 	}
 
 	// ------------------------------------------
 
-	public List<Infectado> getPrimerTanda() {
-		List<Infectado> retorno = null;
-		if (!arrancoTanda1) {
-			retorno = this.listaTanda1;
-			this.arrancoTanda1 = true;
-		}
-		return retorno;
-	}
+//	public List<Infectado> getPrimerTanda() {
+//		List<Infectado> retorno = null;
+//		if (!arrancoTanda1) {
+//			retorno = this.listaTanda1;
+//			this.arrancoTanda1 = true;
+//		}
+//		return retorno;
+//	}
 
-	public List<Infectado> getSegundaTanda() {
-		List<Infectado> retorno = null;
-		if (!arrancoTanda2) {
-			retorno = this.listaTanda2;
-			this.arrancoTanda2 = true;
-		}
-		return retorno;
-	}
+//	public List<Infectado> getSegundaTanda() {
+//		List<Infectado> retorno = null;
+//		if (!arrancoTanda2) {
+//			retorno = this.listaTanda2;
+//			this.arrancoTanda2 = true;
+//		}
+//		return retorno;
+//	}
 
 	public int getCantInfectados() {
 		return cantInfectados;
 	}
 
-	public boolean termino_nivel() {
-		return listaTanda1.isEmpty() && listaTanda2.isEmpty();
-	}
+//	public boolean termino_nivel() {
+//		return listaTanda1.isEmpty() && listaTanda2.isEmpty();
+//	}
 
-	public boolean terminoPrimerTanda() {
-		return listaTanda1.isEmpty();
-	}
+//	public boolean terminoPrimerTanda() {
+//		return listaTanda1.isEmpty();
+//	}
 
 	protected void generarTanda(List<Infectado> listaTanda, int cantInfectados) {
 		Random random = new Random();
@@ -107,13 +116,13 @@ public abstract class Nivel {
 		}
 	}
 
-	public void eliminar_infectado(Infectado inf) {
-		if (!listaTanda1.isEmpty()) {
-			listaTanda1.remove(inf);
-		} else {
-			if (!listaTanda2.isEmpty()) {
-				listaTanda2.remove(inf);
-			}
-		}
-	}
+//	public void eliminar_infectado(Infectado inf) {
+//		if (!listaTanda1.isEmpty()) {
+//			listaTanda1.remove(inf);
+//		} else {
+//			if (!listaTanda2.isEmpty()) {
+//				listaTanda2.remove(inf);
+//			}
+//		}
+//	}
 }

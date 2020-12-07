@@ -29,7 +29,7 @@ public class Beta extends Infectado {
 			if (premio != null) {
 				this.juego.insertarLuego(premio);
 			}
-			juego.eliminar_infectado(this);
+			juego.eliminarInfectado(this);
 		}
 	}
 	

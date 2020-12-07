@@ -47,10 +47,11 @@ public class Juego implements Runnable {
 	public void iniciarJuego() {
 		entidadesActivas.add(jugador);
 		mapa.insertarGrafico(jugador.getGrafico());
-		List<Infectado> lista_infectados = niveles[nivel_actual].getPrimerTanda();
-		for (Infectado i : lista_infectados) {
-			this.insertarEntidad(i);
-		}
+//		List<Infectado> lista_infectados = niveles[nivel_actual].getPrimerTanda();
+//		for (Infectado i : lista_infectados) {
+//			this.insertarEntidad(i);
+//		}
+		niveles[nivel_actual].accionarNivel();
 	}
 
 	public List<Entidad> detectarColisiones(Entidad entidad) {
@@ -80,8 +81,8 @@ public class Juego implements Runnable {
 		this.entidadesInsertar.add(e);
 	}
 
-	public void eliminar_infectado(Infectado inf) {
-		niveles[nivel_actual].eliminar_infectado(inf);
+	public void eliminarInfectado(Infectado inf) {
+		niveles[nivel_actual].eliminarInfectado(inf);
 		this.eliminarLuego(inf);
 	}
 
@@ -101,14 +102,30 @@ public class Juego implements Runnable {
 		return nivel_actual + 1;
 	}
 
-	public void avanzar_nivel() {
-		if (nivel_actual < niveles.length) {
-			nivel_actual += 1;
+	public void avanzarNivel() {
+		nivel_actual += 1;
+	}
+
+	private boolean esUltimoNivel() {
+		boolean esUltimo = false;
+
+		if (nivel_actual == niveles.length) {
+			esUltimo = niveles[nivel_actual - 1].terminoNivel();
 		}
+		return esUltimo;
 	}
 
 	private boolean ganoJuego() {
-		return nivel_actual + 1 == niveles.length && niveles[nivel_actual].termino_nivel();
+//		System.out.println(nivel_actual == niveles.length);
+//		System.out.println(niveles[nivel_actual].terminoNivel());
+//		System.out.println();
+//		return nivel_actual == niveles.length && niveles[nivel_actual-1].terminoNivel();
+		boolean ganoJuego = false;
+
+		if (nivel_actual == niveles.length) {
+			ganoJuego = niveles[nivel_actual - 1].terminoNivel();
+		}
+		return ganoJuego;
 	}
 
 	public boolean isJuego_activo() {
@@ -119,45 +136,56 @@ public class Juego implements Runnable {
 		this.juego_activo = juego_activo;
 	}
 
-	private void insertarInfectados(List<Infectado> lista) {
-		for (Infectado inf : lista) {
-			this.insertarEntidad(inf);
-		}
-	}
+//	private void insertarInfectados(List<Infectado> lista) {
+//		for (Infectado inf : lista) {
+//			this.insertarEntidad(inf);
+//		}
+//	}
+
+//	1.0
+//	if (niveles[nivel_actual].termino_nivel()) {
+//	this.avanzar_nivel();
+//	this.mapa.cambiarNivel(nivel_actual + 1);
+//	lista_infectados = niveles[nivel_actual].getPrimerTanda();
+//	if (lista_infectados != null) {
+//		this.insertarInfectados(lista_infectados);
+//	}
+//} else {
+//	if (niveles[nivel_actual].terminoPrimerTanda()) {
+//		lista_infectados = niveles[nivel_actual].getSegundaTanda();
+//		if (lista_infectados != null) {
+//			this.insertarInfectados(lista_infectados);
+//		}
+//	}
+//}
 
 	public void accionar() {
 		List<Entidad> colision;
-		List<Infectado> lista_infectados;
 		if (juego_activo) {
 			if (ganoJuego()) {
 				juego_activo = false;
-			}
-			// mejorar
-			if (niveles[nivel_actual].termino_nivel()) {
-				this.avanzar_nivel();
-				this.mapa.cambiarNivel(nivel_actual + 1);
-				lista_infectados = niveles[nivel_actual].getPrimerTanda();
-				if (lista_infectados != null) {
-					this.insertarInfectados(lista_infectados);
-				}
+				System.out.println("termino paper");
 			} else {
-				if (niveles[nivel_actual].terminoPrimerTanda()) {
-					lista_infectados = niveles[nivel_actual].getSegundaTanda();
-					if (lista_infectados != null) {
-						this.insertarInfectados(lista_infectados);
+				// --- 1.0
+				// --- 2.0 begin
+				if (niveles[nivel_actual].terminoNivel()) {
+					this.avanzarNivel();
+					this.mapa.cambiarNivel(nivel_actual + 1);
+				}
+				if (!ganoJuego()) {
+					niveles[nivel_actual].accionarNivel();
+				}
+				// --- 2.0 end
+				for (Entidad e : entidadesActivas) {
+					e.accionar(); // detectarColisiones
+					colision = this.detectarColisiones(e);
+					for (Entidad colisiona2 : colision) {
+						e.aceptar(colisiona2.getVisitor());
 					}
 				}
-			}
-			//
-			for (Entidad e : entidadesActivas) {
-				e.accionar(); // detectarColisiones
-				colision = this.detectarColisiones(e);
-				for (Entidad colisiona2 : colision) {
-					e.aceptar(colisiona2.getVisitor());
+				for (Entidad e : entidadesInsertar) {
+					entidadesActivas.add(e);
 				}
-			}
-			for (Entidad e : entidadesInsertar) {
-				entidadesActivas.add(e);
 			}
 		}
 	}

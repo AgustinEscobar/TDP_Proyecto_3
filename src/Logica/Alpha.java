@@ -31,16 +31,16 @@ public class Alpha extends Infectado {
 			if (this.premio != null) {
 				juego.insertarLuego(premio);
 			}
-			juego.eliminar_infectado(this);
+			juego.eliminarInfectado(this);
 		} else {
-			if (carga_viral < 80) {
+			if (carga_viral < 20) {
 				this.movimiento = new MovimientoVerticalRapido(this, MovimientoVerticalRapido.ABAJO);
 			}
 		}
 	}
 
 	public void setMovimiento() {
-		if (carga_viral < 80) {
+		if (carga_viral < 20) {
 			this.movimiento = new MovimientoVerticalRapido(this, MovimientoVerticalRapido.ABAJO);
 		} else
 			this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
