@@ -45,11 +45,11 @@ public abstract class Entidad {
 		return grafico;
 	}
 
-	public int get_x() {
+	public int getX() {
 		return this.grafico.getX();
 	}
 
-	public int get_y() {
+	public int getY() {
 		return this.grafico.getY();
 	}
 

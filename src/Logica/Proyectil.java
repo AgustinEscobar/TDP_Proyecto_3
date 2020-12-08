@@ -7,7 +7,7 @@ import Visitor.VisitorProyectil;
 public abstract class Proyectil extends Entidad{
 	protected int desinfeccion;
 	
-	public Proyectil(Juego juego,Grafico grafico_jugador) {
+	public Proyectil(Juego juego,Grafico graficoJugador) {
 		super(juego);
 		this.visitor = new VisitorProyectil(this);
 		this.movimiento = new MovimientoVertical(this,MovimientoVertical.ARRIBA);
@@ -19,7 +19,7 @@ public abstract class Proyectil extends Entidad{
 	
 	@Override
 	public void accionar() {
-		movimiento.mover();
+		this.movimiento.mover();
 		this.colisiones.detectarColision();
 	}
 }

@@ -1,31 +1,30 @@
 package Logica;
 
-import Comportamiento.Comportamiento;
 import Premio.Premio;
 
-public abstract class Personaje extends Entidad{
-	protected float carga_viral;
+public abstract class Personaje extends Entidad {
+	protected float cargaViral;
 	protected Premio premio;
-	protected Comportamiento comportamiento;
-	protected float danio;
-	
+	protected float danho;
+
 	public Personaje(Juego juego) {
 		super(juego);
 	}
-	
+
 	public void setDanho(float d) {
-		this.danio = d;
+		this.danho = d;
 	}
-	
+
 	public Premio getPremio() {
 		return premio;
 	}
-	
-	public float getDanio() {
-		return danio;
+
+	public float getDanho() {
+		return danho;
 	}
-	
-	public abstract boolean esta_infectado();
+
+	public abstract boolean estaInfectado();
+
 	public abstract void recibirDanho(float d);
 
 }

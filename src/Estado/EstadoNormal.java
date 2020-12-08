@@ -11,14 +11,14 @@ public class EstadoNormal extends Estado {
 		this.velocidadJugador = 6;
 	}
 
-	@Override
-	public void cambiarEstado() {
-		jugador.setVelocidad(jugador.getVelocidad()); //
-	}
-	
-	@Override
-	public void accionarEstado(Jugador jugador) {
-	}
+//	@Override
+//	public void cambiarEstado() {
+//		jugador.setVelocidad(jugador.getVelocidad()); //
+//	}
+//	
+//	@Override
+//	public void accionarEstado(Jugador jugador) {
+//	}
 
 	@Override
 	public Proyectil getProyectil() {

@@ -53,15 +53,11 @@ public abstract class Nivel {
 	}
 
 	public void eliminarInfectado(Infectado infectado) {
-		System.out.println("Tanda actual (eliminarInfectado.nivel: " + tandaActual);
 		if (tandaActual < arregloTandas.length && !arregloTandas[tandaActual].isEmpty()) {
 			this.arregloTandas[tandaActual].remove(infectado);
 			this.cantInfectados -= 1;
-			System.out.println(cantInfectados + " | " + arregloTandas[tandaActual].size());
 		}
 	}
-
-	// ------------------------------------------
 
 	public int getCantInfectados() {
 		return cantInfectados;

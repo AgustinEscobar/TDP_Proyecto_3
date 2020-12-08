@@ -29,13 +29,11 @@ public class GameGUI extends JFrame {
 	public GameGUI() {
 		juego = new Juego(this);
 
-		Random random = new Random();
-
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 802, 600);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));// PASAR A MAPA
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -48,25 +46,20 @@ public class GameGUI extends JFrame {
 		contentPane.add(barra_opciones);
 		barra_opciones.setLayout(null);
 		
-		JLabel nivelActual = new JLabel("Nivel actual: "+juego.get_nivel_actual());
+		JLabel nivelActual = new JLabel("Nivel actual: "+juego.getNivelActual());
 		nivelActual.setBounds(0, 5, 206, 38);
 		barra_opciones.add(nivelActual);
-		
-//		panelMapa = new Mapa();
-//		panelMapa.setBounds(0, 0, 591, 571);
-//		contentPane.add(panelMapa);
-//		panelMapa.setLayout(null);
 
 		Jugador jugador = juego.getPlayer();
 		Grafico grafico_jugador = jugador.getGrafico();
-		grafico_jugador.setBounds(jugador.get_x(), jugador.get_y(), grafico_jugador.getAncho(),
+		grafico_jugador.setBounds(jugador.getX(), jugador.getY(), grafico_jugador.getAncho(),
 				grafico_jugador.getAlto());
 
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				Point posJugador = juego.getPlayer().getPosicion();
-				if (juego.isJuego_activo()) {
+				if (juego.isJuegoActivo()) {
 					int codigoTeclado = e.getKeyCode();
 	
 					if (codigoTeclado == KeyEvent.VK_LEFT || codigoTeclado == KeyEvent.VK_A) {
@@ -75,15 +68,14 @@ public class GameGUI extends JFrame {
 					if (codigoTeclado == KeyEvent.VK_RIGHT || codigoTeclado == KeyEvent.VK_D) {
 						juego.getPlayer().moverADerecha();
 					}
-					posJugador.setLocation(juego.getPlayer().get_x(), juego.getPlayer().get_y());
+					posJugador.setLocation(juego.getPlayer().getX(), juego.getPlayer().getY());
 					grafico_jugador.setLocation(posJugador);
 				}
 			}
 
 			public void keyReleased(KeyEvent e) {
-				nivelActual.setText("Nivel actual: "+juego.get_nivel_actual());
 				int codigoTecla = e.getKeyCode();
-				if (juego.isJuego_activo()) {
+				if (juego.isJuegoActivo()) {
 					if (codigoTecla == KeyEvent.VK_SPACE) {
 							juego.generarDisparo(jugador.disparar());
 					}

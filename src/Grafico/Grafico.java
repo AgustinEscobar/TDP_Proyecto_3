@@ -40,7 +40,6 @@ public abstract class Grafico extends JLabel {
 			this.alto = imageIcon.getIconHeight();
 			this.ancho = imageIcon.getIconWidth();
 			this.setBounds(this.getX(), this.getY(), ancho, alto);
-			//System.out.println("x: "+this.getX()+"|y: "+this.getY()+"|an: "+ancho+"|alt "+alto);
 		}
 	}
 	

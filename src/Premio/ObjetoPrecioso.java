@@ -26,6 +26,6 @@ public class ObjetoPrecioso extends Premio {
 
 	@Override
 	public void aceptar(Visitor v) {
-		v.visit_premio_obj_precioso(this);
+		v.visitPremioPrecioso(this);
 	}
 }

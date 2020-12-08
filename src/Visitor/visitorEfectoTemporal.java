@@ -4,27 +4,21 @@ import Estado.EstadoEfectoTemporal;
 import Logica.Alpha;
 import Logica.Beta;
 import Logica.Infectado;
-import Logica.Jugador;
 import Movimiento.MovimientoVerticalCongelado;
 
-public class visitorCuarentena extends Visitor {
+public class visitorEfectoTemporal extends Visitor {
 
-	public visitorCuarentena() {
+	public visitorEfectoTemporal() {
 	}
 
 	@Override
-	public void visit_alpha(Alpha a) {
+	public void visitAlpha(Alpha a) {
 		this.aplicarCuarentena(a);
 	}
 
 	@Override
-	public void visit_beta(Beta b) {
+	public void visitBeta(Beta b) {
 		this.aplicarCuarentena(b);
-	}
-	
-	@Override
-	public void visit_jugador(Jugador j) {
-		j.setEstado(new EstadoEfectoTemporal(j));
 	}
 
 	private void aplicarCuarentena(Infectado f) {

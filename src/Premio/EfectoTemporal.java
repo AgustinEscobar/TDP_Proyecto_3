@@ -5,7 +5,7 @@ import Grafico.GraficoPremioTemporal;
 import Logica.Infectado;
 import Logica.Juego;
 import Visitor.Visitor;
-import Visitor.visitorCuarentena;
+import Visitor.visitorEfectoTemporal;
 
 /**
  * Este tipo de premios otorga efectos temporales al jugador. Uno de los efectos
@@ -23,12 +23,12 @@ public class EfectoTemporal extends Premio {
 		this.grafico = new GraficoPremioTemporal();
 		Grafico graficoInfectado = infectado.getGrafico();
 		this.grafico.setLocation(graficoInfectado.getX(), graficoInfectado.getY());
-		this.visitor = new visitorCuarentena();
+		this.visitor = new visitorEfectoTemporal();
 	}
 
 	@Override
 	public void aceptar(Visitor v) {
-		v.visit_premio_obj_temporal(this);
+		v.visitPremioTemporal(this);
 	}
 
 }

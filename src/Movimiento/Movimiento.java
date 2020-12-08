@@ -9,10 +9,10 @@ import Logica.Mapa;
 public abstract class Movimiento {
 	protected int direccion;
 	protected Entidad entidad;
-	protected int velocidad_extra;
+	protected int velocidadExtra;
 	protected int duracion;
 	protected int limiteY;
-	
+
 	public static final int ARRIBA = -1;
 	public static final int ABAJO = 1;
 
@@ -22,18 +22,18 @@ public abstract class Movimiento {
 	}
 
 	public abstract void mover();
-	
+
 	// Movimiento del infectado.
 	protected void moverAbajo(Point p, double x, double y) {
 		if (y <= Mapa.LIMITE_INFERIOR) {
 			p.setLocation(x, y);
 			entidad.getGrafico().setLocation(p);
 		} else {
-			setear_ubicacion_inicial(p);
+			setUbicacionInicial(p);
 		}
 	}
-	
-	// !! Movimiento del proyectil.
+
+	// Movimiento del proyectil.
 	protected void moverArriba(Point p, double x, double y) {
 
 		if (y > Mapa.LIMITE_SUPERIOR) {
@@ -43,21 +43,17 @@ public abstract class Movimiento {
 			entidad.eliminar();
 		}
 	}
-	
-	protected void setear_ubicacion_inicial(Point p) {
+
+	protected void setUbicacionInicial(Point p) {
 		double y = Mapa.LIMITE_SUPERIOR;
-		p.setLocation(get_x_random(), y);
+		p.setLocation(getXRandom(), y);
 		entidad.getGrafico().setLocation(p);
-	}	
-	
-	protected double get_x_random() {
+	}
+
+	protected double getXRandom() {
 		Random r = new Random();
 		double valor = r.nextInt(Mapa.LIMITE_DER_X - entidad.getGrafico().getAncho());
 		return valor;
 	}
-	
-	
-	
-	
-	
+
 }

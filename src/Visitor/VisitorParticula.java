@@ -10,8 +10,8 @@ public class VisitorParticula extends Visitor {
 		this.particula = particula;
 	}
 
-	public void visit_jugador(Jugador jugador) {
-		jugador.recibirDanho(particula.getInfectado().getDanio());
+	public void visitJugador(Jugador jugador) {
+		jugador.recibirDanho(particula.getInfectado().getDanho());
 		particula.eliminar();
 	}
 }

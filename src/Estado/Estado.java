@@ -19,7 +19,4 @@ public abstract class Estado {
 	
 	public void accionarEstado() {}
 	
-	public abstract void accionarEstado(Jugador jugador);
-
-	public abstract void cambiarEstado();
 }

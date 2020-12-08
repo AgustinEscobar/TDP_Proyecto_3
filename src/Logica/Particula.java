@@ -28,17 +28,17 @@ public class Particula extends Entidad {
 	@Override
 	public void accionar() {
 		if (rango == 0 || this.grafico.getLocation().getY() >= Mapa.LIMITE_INFERIOR) {
-			rango = 100;
+			this.rango = 100;
 			this.eliminar();
 		} else {
-			rango -= 1;
-			movimiento.mover();
+			this.rango -= 1;
+			this.movimiento.mover();
 			this.colisiones.detectarColision();
 		}
 	}
 
 	@Override
 	public void aceptar(Visitor v) {
-		v.visit_virus(this);
+		v.visitParticula(this);
 	}
 }

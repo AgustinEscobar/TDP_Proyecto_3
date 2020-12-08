@@ -12,17 +12,6 @@ public class EstadoPremioPrecioso extends Estado {
 	}
 
 	@Override
-	public void accionarEstado(Jugador jugador) {
-		
-	}
-
-	@Override
-	public void cambiarEstado() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public Proyectil getProyectil() {	
 		return new ProyectilSanitario(jugador.getJuego(),jugador.getGrafico());
 	}

@@ -3,6 +3,7 @@ package Visitor;
 import Logica.Alpha;
 import Logica.Beta;
 import Logica.Proyectil;
+import Logica.SuperInfectado;
 
 public class VisitorProyectil extends Visitor{
 	protected Proyectil proyectil;
@@ -11,14 +12,19 @@ public class VisitorProyectil extends Visitor{
 		proyectil= p;
 	}
 	
-	public void visit_beta(Beta beta) {
+	public void visitBeta(Beta beta) {
 		beta.recibirDanho(proyectil.getDesinfeccion());
 		proyectil.eliminar();
 	}
 	
-	public void visit_alpha(Alpha alpha) {
+	public void visitAlpha(Alpha alpha) {
 		alpha.recibirDanho(proyectil.getDesinfeccion());
 		proyectil.eliminar();
 	}
 	
+	@Override
+	public void visitSuperInfectado(SuperInfectado infectado) {
+		infectado.recibirDanho(proyectil.getDesinfeccion());
+		proyectil.eliminar();
+	}
 }

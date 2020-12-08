@@ -7,5 +7,5 @@ public class GraficoSuperEnemigo extends Grafico {
 		this.imagenes = new String[] { "/Texturas/superEnemigo.png" };
 		this.setImagen(0);
 	}
-	
+
 }

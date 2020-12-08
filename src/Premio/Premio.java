@@ -4,13 +4,11 @@ import Logica.Entidad;
 import Logica.Juego;
 import Logica.Mapa;
 import Movimiento.MovimientoVertical;
-import Visitor.VisitorPremio;
 
 public abstract class Premio extends Entidad {
 
 	public Premio(Juego juego) {
 		super(juego);
-//		this.visitor = new Visitor_premio(this);
 		this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
 		this.velocidad = 1;
 	}
@@ -19,6 +17,7 @@ public abstract class Premio extends Entidad {
 	public void accionar() {
 		if (this.grafico.getLocation().getY() < Mapa.LIMITE_INFERIOR) {
 			this.movimiento.mover();
+			this.colisiones.detectarColision();
 		}else {
 			this.eliminar();
 		}

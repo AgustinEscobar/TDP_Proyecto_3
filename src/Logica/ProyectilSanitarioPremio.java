@@ -6,17 +6,17 @@ import Visitor.Visitor;
 
 public class ProyectilSanitarioPremio extends Proyectil {
 
-	public ProyectilSanitarioPremio(Juego juego, Grafico grafico_jugador) {
-		super(juego, grafico_jugador);
+	public ProyectilSanitarioPremio(Juego juego, Grafico graficoJugador) {
+		super(juego, graficoJugador);
 		this.grafico = new GraficoProyectilSanitarioPremio();
-		this.grafico.setLocation(grafico_jugador.getX() + this.grafico.getAncho() + 11, grafico_jugador.getY() - this.grafico.getY() - 30);
+		this.grafico.setLocation(graficoJugador.getX() + this.grafico.getAncho() + 11, graficoJugador.getY() - this.grafico.getY() - 30);
 		this.velocidad = 10;
 		this.desinfeccion = 40;
 	}
 
 	@Override
 	public void aceptar(Visitor v) {
-		v.visit_proyectil_premio(this);
+		v.visitProyectilPremio(this);
 	}
 
 }
