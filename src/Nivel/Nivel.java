@@ -1,6 +1,5 @@
 package Nivel;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -12,44 +11,29 @@ import Logica.Juego;
 public abstract class Nivel {
 	protected Juego juego;
 	protected int cantInfectados;
-	protected List<Infectado> listaTanda1;
-	protected List<Infectado> listaTanda2;
-	//
-	protected boolean arrancoTanda1;
-	protected boolean arrancoTanda2;
-	//
-//
 	protected List<Infectado>[] arregloTandas;
 	protected int tandaActual;
 	protected int totalInfectados;
 	protected boolean arrancoTanda;
-//
 
 	public Nivel(Juego juego, int cantTandas) {
 		this.juego = juego;
-		this.listaTanda1 = new LinkedList<Infectado>();
-		this.listaTanda2 = new LinkedList<Infectado>();
-		this.arrancoTanda1 = false;
-		this.arrancoTanda2 = false;
-
-		//
 		this.arregloTandas = (List<Infectado>[]) new List[cantTandas];
 		this.tandaActual = 0;
 		this.totalInfectados = 0;
 		this.arrancoTanda = false;
-		//
 	}
 
 	// ---------------------MEJORA-NIVEL---------------------
 
 	public void accionarNivel() {
-		if ( tandaActual != arregloTandas.length &&  arregloTandas[tandaActual].isEmpty()) {
+		if (tandaActual != arregloTandas.length && arregloTandas[tandaActual].isEmpty()) {
 			// avanzo a la siguiente tanda
 			this.arrancoTanda = false;
 			tandaActual += 1;
 		}
 		if (!arrancoTanda && tandaActual != arregloTandas.length) { // inserto los infectados a entidades
-			
+//			generarDemora(8000000); //TODO
 			for (Infectado infectado : this.arregloTandas[tandaActual]) {
 				juego.insertarLuego(infectado);
 			}
@@ -58,49 +42,30 @@ public abstract class Nivel {
 
 	}
 
+//	private void generarDemora(int cant) {
+//		while(cant>=0) {
+//			cant-=1;
+//		}
+//	}
+
 	public boolean terminoNivel() {
-		return this.cantInfectados == 0;
+		return arregloTandas[arregloTandas.length - 1].isEmpty();
 	}
 
 	public void eliminarInfectado(Infectado infectado) {
-		System.out.println("Tanda actual (eliminarInfectado.nivel: "+tandaActual);
-		if (tandaActual < arregloTandas.length &&  !arregloTandas[tandaActual].isEmpty()) {
+		System.out.println("Tanda actual (eliminarInfectado.nivel: " + tandaActual);
+		if (tandaActual < arregloTandas.length && !arregloTandas[tandaActual].isEmpty()) {
 			this.arregloTandas[tandaActual].remove(infectado);
 			this.cantInfectados -= 1;
+			System.out.println(cantInfectados + " | " + arregloTandas[tandaActual].size());
 		}
 	}
 
 	// ------------------------------------------
 
-//	public List<Infectado> getPrimerTanda() {
-//		List<Infectado> retorno = null;
-//		if (!arrancoTanda1) {
-//			retorno = this.listaTanda1;
-//			this.arrancoTanda1 = true;
-//		}
-//		return retorno;
-//	}
-
-//	public List<Infectado> getSegundaTanda() {
-//		List<Infectado> retorno = null;
-//		if (!arrancoTanda2) {
-//			retorno = this.listaTanda2;
-//			this.arrancoTanda2 = true;
-//		}
-//		return retorno;
-//	}
-
 	public int getCantInfectados() {
 		return cantInfectados;
 	}
-
-//	public boolean termino_nivel() {
-//		return listaTanda1.isEmpty() && listaTanda2.isEmpty();
-//	}
-
-//	public boolean terminoPrimerTanda() {
-//		return listaTanda1.isEmpty();
-//	}
 
 	protected void generarTanda(List<Infectado> listaTanda, int cantInfectados) {
 		Random random = new Random();
@@ -115,14 +80,4 @@ public abstract class Nivel {
 			this.totalInfectados += 1;
 		}
 	}
-
-//	public void eliminar_infectado(Infectado inf) {
-//		if (!listaTanda1.isEmpty()) {
-//			listaTanda1.remove(inf);
-//		} else {
-//			if (!listaTanda2.isEmpty()) {
-//				listaTanda2.remove(inf);
-//			}
-//		}
-//	}
 }

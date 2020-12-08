@@ -112,20 +112,13 @@ public class Juego implements Runnable {
 		if (nivel_actual == niveles.length) {
 			esUltimo = niveles[nivel_actual - 1].terminoNivel();
 		}
+		
+		
 		return esUltimo;
 	}
 
 	private boolean ganoJuego() {
-//		System.out.println(nivel_actual == niveles.length);
-//		System.out.println(niveles[nivel_actual].terminoNivel());
-//		System.out.println();
-//		return nivel_actual == niveles.length && niveles[nivel_actual-1].terminoNivel();
-		boolean ganoJuego = false;
-
-		if (nivel_actual == niveles.length) {
-			ganoJuego = niveles[nivel_actual - 1].terminoNivel();
-		}
-		return ganoJuego;
+		return niveles[niveles.length-1].terminoNivel();
 	}
 
 	public boolean isJuego_activo() {
@@ -135,29 +128,6 @@ public class Juego implements Runnable {
 	public void setJuego_activo(boolean juego_activo) {
 		this.juego_activo = juego_activo;
 	}
-
-//	private void insertarInfectados(List<Infectado> lista) {
-//		for (Infectado inf : lista) {
-//			this.insertarEntidad(inf);
-//		}
-//	}
-
-//	1.0
-//	if (niveles[nivel_actual].termino_nivel()) {
-//	this.avanzar_nivel();
-//	this.mapa.cambiarNivel(nivel_actual + 1);
-//	lista_infectados = niveles[nivel_actual].getPrimerTanda();
-//	if (lista_infectados != null) {
-//		this.insertarInfectados(lista_infectados);
-//	}
-//} else {
-//	if (niveles[nivel_actual].terminoPrimerTanda()) {
-//		lista_infectados = niveles[nivel_actual].getSegundaTanda();
-//		if (lista_infectados != null) {
-//			this.insertarInfectados(lista_infectados);
-//		}
-//	}
-//}
 
 	public void accionar() {
 		List<Entidad> colision;
