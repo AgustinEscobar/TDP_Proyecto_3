@@ -106,19 +106,19 @@ public class Juego implements Runnable {
 		nivel_actual += 1;
 	}
 
-	private boolean esUltimoNivel() {
-		boolean esUltimo = false;
-
-		if (nivel_actual == niveles.length) {
-			esUltimo = niveles[nivel_actual - 1].terminoNivel();
-		}
-		
-		
-		return esUltimo;
-	}
+//	private boolean esUltimoNivel() {
+//		boolean esUltimo = false;
+//
+//		if (nivel_actual == niveles.length) {
+//			esUltimo = niveles[nivel_actual - 1].terminoNivel();
+//		}
+//		
+//		
+//		return esUltimo;
+//	}
 
 	private boolean ganoJuego() {
-		return niveles[niveles.length-1].terminoNivel();
+		return niveles[niveles.length - 1].terminoNivel();
 	}
 
 	public boolean isJuego_activo() {
@@ -145,14 +145,12 @@ public class Juego implements Runnable {
 				if (!ganoJuego()) {
 					niveles[nivel_actual].accionarNivel();
 				}
+
 				// --- 2.0 end
-				for (Entidad e : entidadesActivas) {
-					e.accionar(); // detectarColisiones
-					colision = this.detectarColisiones(e);
-					for (Entidad colisiona2 : colision) {
-						e.aceptar(colisiona2.getVisitor());
-					}
+				for (Entidad entidad : entidadesActivas) {
+					entidad.accionar();
 				}
+
 				for (Entidad e : entidadesInsertar) {
 					entidadesActivas.add(e);
 				}

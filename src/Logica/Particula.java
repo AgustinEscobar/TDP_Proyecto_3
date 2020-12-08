@@ -33,6 +33,7 @@ public class Particula extends Entidad {
 		} else {
 			rango -= 1;
 			movimiento.mover();
+			this.colisiones.detectarColision();
 		}
 	}
 

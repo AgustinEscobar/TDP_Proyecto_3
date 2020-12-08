@@ -15,11 +15,6 @@ public class ProyectilSanitarioPremio extends Proyectil {
 	}
 
 	@Override
-	public void accionar() {
-		movimiento.mover();
-	}
-
-	@Override
 	public void aceptar(Visitor v) {
 		v.visit_proyectil_premio(this);
 	}

@@ -52,6 +52,7 @@ public class Jugador extends Personaje {
 	public void recibirDanho(float d) {
 		carga_viral += d;
 		if (carga_viral >= 100) {
+			System.out.println("jugador muerrto");
 			this.eliminar();
 			this.getJuego().setJuego_activo(false);
 		}
@@ -87,8 +88,7 @@ public class Jugador extends Personaje {
 
 	@Override
 	public void accionar() {
-		this.disparar();
-		this.estado.accionarEstado();
+		this.colisiones.detectarColision();
 	}
 
 	@Override

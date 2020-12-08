@@ -12,9 +12,11 @@ public abstract class Entidad {
 	protected Grafico grafico;
 	protected Movimiento movimiento;
 	protected int velocidad;
+	protected DetectarColisiones colisiones;
 
 	protected Entidad(Juego juego) {
 		this.juego = juego;
+		this.colisiones = new DetectarColisiones(this, juego);
 	}
 
 	public void setVelocidad(int velocidad) {

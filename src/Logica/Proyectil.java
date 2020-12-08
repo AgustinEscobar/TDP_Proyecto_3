@@ -16,4 +16,10 @@ public abstract class Proyectil extends Entidad{
 	public int getDesinfeccion() {
 		return desinfeccion;
 	}
+	
+	@Override
+	public void accionar() {
+		movimiento.mover();
+		this.colisiones.detectarColision();
+	}
 }

@@ -57,6 +57,7 @@ public abstract class Infectado extends Personaje {
 		if (carga_viral > 0) {
 			this.mover();
 			this.disparar();
+			this.colisiones.detectarColision();
 		}
 	}
 
