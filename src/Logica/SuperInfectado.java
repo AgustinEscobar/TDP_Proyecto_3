@@ -38,8 +38,6 @@ public class SuperInfectado extends Infectado {
 		if (cargaViral > 0) {
 			this.mover();
 			this.disparar();
-			this.disparar();
-			this.disparar();
 			this.colisiones.detectarColision();
 		}
 	}

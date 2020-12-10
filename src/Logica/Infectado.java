@@ -16,7 +16,6 @@ public abstract class Infectado extends Personaje {
 		super(juego);
 		this.cargaViral = 100;
 		this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
-//		this.cooldown = 500;
 		this.particula = null;
 	}
 

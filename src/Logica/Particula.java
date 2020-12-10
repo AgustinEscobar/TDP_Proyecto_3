@@ -15,8 +15,8 @@ public class Particula extends Entidad {
 		this.visitor = new VisitorParticula(this);
 		this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
 		this.grafico = new GraficoParticula();
-		this.grafico.setLocation(infectado.getGrafico().getX() + this.grafico.getAncho() * 4,
-				infectado.getGrafico().getY() + this.grafico.getAlto() * 2);
+		this.grafico.setLocation(infectado.getGrafico().getX() + infectado.getGrafico().getAncho() / 2,
+				infectado.getGrafico().getY() + infectado.getGrafico().getAlto());
 		this.velocidad = 10;
 		rango = 100;
 	}
