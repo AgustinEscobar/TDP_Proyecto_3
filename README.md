@@ -6,6 +6,7 @@ WAR OF PLANES:
    aumentará de 0 hasta un maximo 100 puntos, siendo esto ultimo, el fin del jugador (game over). Otra manera de dañar el jugador es 
    cuando el mismo colisiona contra un avion infectado. 
     Existen dos tipos de premios que están incorporados en alguno de los infectados, estos dos son:
+    
    +Orbe relentizadora: Cuando el jugador obtiene este premio, los infectados automaticamente quedarán inmobilizados por un periodo de tiempo determinado,
     este premio, afecta a todos los infectados menos al jefe final. Además, el jugador obtendrá otro tipo de proyectil que posee una capacidad de desinfección 
     superior y, además, se mueve con mayor velocidad.
