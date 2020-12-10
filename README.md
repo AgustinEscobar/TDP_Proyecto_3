@@ -9,7 +9,7 @@ WAR OF PLANES:
     
    + Orbe relentizadora: Cuando el jugador obtiene este premio, los infectados automaticamente quedarán inmobilizados por un periodo de tiempo determinado,
     este premio, afecta a todos los infectados menos al jefe final. Además, el jugador obtendrá otro tipo de proyectil que posee una capacidad de desinfección 
-    superior y, además, se mueve con mayor velocidad.
+    superio.
     
    + Poción de vida: Cuando el jugador obtiene este premio, el mismo funciona como una suerte de "antídoto" que le otorga una carga viral de 0 puntos al jugador.
    
@@ -17,7 +17,7 @@ WAR OF PLANES:
      Una propiedad que tiene un tipo de avión infectado es que, cuando su carga viral (vida) es menor al 20%, el mismo aumenta su velocidad significativamente.
   
   ¿Cómo jugar?
-  - Las teclas de movimiento son las teclas de flechas (izquierda y derecha).
+  - Las teclas de movimiento son las teclas de flechas (izquierda y derecha) ó las teclas "a" y "d" para moverse de izquierda a derecha respectivamente.
   - Los proyectiles se disparan mediante el click izquierdo del mouse ó mediante la barra espaciadora.
  
    
