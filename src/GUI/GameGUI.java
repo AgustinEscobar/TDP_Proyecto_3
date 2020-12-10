@@ -15,6 +15,9 @@ import Logica.Mapa;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -108,10 +111,10 @@ public class GameGUI extends JFrame {
 				if (juego.isJuegoActivo()) {
 					int codigoTeclado = e.getKeyCode();
 
-					if (codigoTeclado == KeyEvent.VK_LEFT) {
+					if (codigoTeclado == KeyEvent.VK_LEFT || codigoTeclado == KeyEvent.VK_A) {
 						juego.getPlayer().moverAIzquierda();
 					}
-					if (codigoTeclado == KeyEvent.VK_RIGHT) {
+					if (codigoTeclado == KeyEvent.VK_RIGHT || codigoTeclado == KeyEvent.VK_D) {
 						juego.getPlayer().moverADerecha();
 					}
 				}
@@ -121,13 +124,38 @@ public class GameGUI extends JFrame {
 				int codigoTecla = e.getKeyCode();
 				if (juego.isJuegoActivo()) {
 					if (codigoTecla == KeyEvent.VK_SPACE) {
-						juego.generarDisparo(jugador.disparar());
+						juego.getPlayer().disparar();
 					}
 				}
 			}
 		});
+		
+		addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				juego.getPlayer().disparar();
+			}
+		});
 		this.setVisible(true);
 	}
+	
+	
 
 	public Juego getJuego() {
 		return juego;
@@ -166,7 +194,7 @@ public class GameGUI extends JFrame {
 			JOptionPane.showMessageDialog(null, "Muy bien 10 felicitado", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
 		} else { // perdio
 			panelMapa.gameOver();
-			JOptionPane.showMessageDialog(null, "Anda a jugar a la bolita", "¡Perdiste!",
+			JOptionPane.showMessageDialog(null, "Que bajonaso", "¡Perdiste!",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 		botonReiniciar.setEnabled(true);

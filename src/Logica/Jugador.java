@@ -8,8 +8,6 @@ import Visitor.Visitor;
 import Visitor.VisitorJugador;
 
 public class Jugador extends Personaje {
-
-	protected Arma arma; // conceptual
 	protected int limiteIzq, limiteDer;
 	protected Estado estado;
 
@@ -21,7 +19,6 @@ public class Jugador extends Personaje {
 		this.velocidad = 8;
 		this.danho = 20;
 		this.estado = new EstadoNormal(this);
-		arma = new Arma(new ProyectilSanitario(juego, this.grafico), this);
 		limiteDer = Mapa.LIMITE_DER_X - this.grafico.getAncho();
 		limiteIzq = Mapa.LIMITE_IZQ_X;
 		this.grafico.setLocation(limiteDer / 2, Mapa.LIMITE_INFERIOR - grafico.getAlto() - 10);
@@ -62,12 +59,9 @@ public class Jugador extends Personaje {
 		return estado;
 	}
 
-	public Arma getArma() {
-		return arma;
-	}
-
-	public Proyectil disparar() {
-		return arma.disparar();
+	public void disparar() {
+		Proyectil newProyectil = estado.getProyectil();
+		juego.insertarLuego(newProyectil);
 	}
 
 	public void moverADerecha() {
