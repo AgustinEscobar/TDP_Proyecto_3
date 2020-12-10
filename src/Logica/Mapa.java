@@ -51,7 +51,7 @@ public class Mapa extends JPanel {
 		for(Entidad entidad : juego.entidades()) {
 			entidad.getGrafico().setVisible(false);
 		}
-		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/juegoGanado.png")));
+		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/juegoGanado.jpg")));
 	}
 
 	public synchronized void insertarGrafico(Grafico g) {

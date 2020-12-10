@@ -18,7 +18,7 @@ public class Jugador extends Personaje {
 		this.visitor = new VisitorJugador(this);
 		this.grafico = new GraficoJugador();
 		this.cargaViral = 0;
-		this.velocidad = 6;
+		this.velocidad = 8;
 		this.danho = 20;
 		this.estado = new EstadoNormal(this);
 		arma = new Arma(new ProyectilSanitario(juego, this.grafico), this);
