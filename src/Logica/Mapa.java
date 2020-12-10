@@ -31,13 +31,27 @@ public class Mapa extends JPanel {
 
 		this.background = new JLabel();
 		this.background.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/nivel1.jpg")));
+		cambiarNivel(1);
 		this.add(background);
 		this.setComponentZOrder(this.background, 0);
 	}
 
 	public void cambiarNivel(int nivel) {
 		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/nivel" + nivel + ".jpg")));
+	}
+	
+	public void gameOver() {
+		for(Entidad entidad : juego.entidades()) {
+			entidad.getGrafico().setVisible(false);
+		}
+		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/juegoTerminado.jpg")));
+	}
+	
+	public void gameWin() {
+		for(Entidad entidad : juego.entidades()) {
+			entidad.getGrafico().setVisible(false);
+		}
+		this.background.setIcon(new ImageIcon(this.getClass().getResource("/Texturas/juegoGanado.png")));
 	}
 
 	public synchronized void insertarGrafico(Grafico g) {

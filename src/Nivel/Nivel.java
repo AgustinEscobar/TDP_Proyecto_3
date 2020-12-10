@@ -33,7 +33,6 @@ public abstract class Nivel {
 			tandaActual += 1;
 		}
 		if (!arrancoTanda && tandaActual != arregloTandas.length) { // inserto los infectados a entidades
-//			generarDemora(8000000); //TODO
 			for (Infectado infectado : this.arregloTandas[tandaActual]) {
 				juego.insertarLuego(infectado);
 			}
@@ -41,12 +40,6 @@ public abstract class Nivel {
 		}
 
 	}
-
-//	private void generarDemora(int cant) {
-//		while(cant>=0) {
-//			cant-=1;
-//		}
-//	}
 
 	public boolean terminoNivel() {
 		return arregloTandas[arregloTandas.length - 1].isEmpty();

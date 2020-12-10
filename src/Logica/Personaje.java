@@ -22,6 +22,10 @@ public abstract class Personaje extends Entidad {
 	public float getDanho() {
 		return danho;
 	}
+	
+	public float getVida() {
+		return cargaViral;
+	}
 
 	public abstract boolean estaInfectado();
 

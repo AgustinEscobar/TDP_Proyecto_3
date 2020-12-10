@@ -9,11 +9,6 @@ import Nivel.Nivel1;
 import Nivel.Nivel2;
 import Nivel.Nivel3;
 
-/*
- * -que el mapa se encargue de la grafica
- * 
- * 
- */
 public class Juego implements Runnable {
 	protected Mapa mapa;
 	protected GameGUI gui;
@@ -52,7 +47,7 @@ public class Juego implements Runnable {
 
 	public void insertarEntidad(Entidad entidad) {
 		this.entidadesActivas.add(entidad);
-		this.mapa.insertarGrafico(entidad.getGrafico()); 
+		this.mapa.insertarGrafico(entidad.getGrafico());
 	}
 
 	public void eliminarLuego(Entidad e) {
@@ -87,7 +82,7 @@ public class Juego implements Runnable {
 	private void avanzarNivel() {
 		nivelActual += 1;
 	}
-	
+
 	private boolean ganoJuego() {
 		return niveles[niveles.length - 1].terminoNivel();
 	}
@@ -104,17 +99,13 @@ public class Juego implements Runnable {
 		if (juegoActivo) {
 			if (ganoJuego()) {
 				juegoActivo = false;
-				System.out.println("termino paper");
+				this.terminoJuego(true);
 			} else {
 				if (niveles[nivelActual].terminoNivel()) {
 					this.avanzarNivel();
 					this.mapa.cambiarNivel(nivelActual + 1);
 				}
-				if (!ganoJuego()) {
-					niveles[nivelActual].accionarNivel();
-				}
-
-				// --- 2.0 end
+				niveles[nivelActual].accionarNivel();
 				for (Entidad entidad : entidadesActivas) {
 					entidad.accionar();
 				}
@@ -134,6 +125,10 @@ public class Juego implements Runnable {
 		return entidadesActivas;
 	}
 
+	public void terminoJuego(boolean termino) {
+		this.gui.terminoJuego(termino);
+	}
+
 	@Override
 	public void run() {
 		try {
@@ -149,6 +144,8 @@ public class Juego implements Runnable {
 					this.insertarEntidad(e);
 				}
 				entidadesInsertar = new LinkedList<Entidad>();
+				this.gui.actualizarNivel();
+				this.gui.actualizarVidaJugador(jugador);
 				this.mapa.repaint();
 			}
 		} catch (InterruptedException ex) {

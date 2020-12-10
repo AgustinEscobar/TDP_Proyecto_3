@@ -13,6 +13,8 @@ public class Beta extends Infectado {
 		this.visitor = new VisitorBeta(this);
 		this.grafico = new GraficoBeta();
 		this.danho = 15;
+		this.cooldown = 500;
+		this.cooldownFinal = cooldown;
 		Random ran = new Random();
 		int valor;
 		valor = ran.nextInt(Mapa.LIMITE_DER_X - this.getGrafico().getAncho());

@@ -13,6 +13,8 @@ public class SuperInfectado extends Infectado {
 		this.visitor = new VisitorSuperInfectado(this);
 		this.grafico = new GraficoSuperEnemigo();
 		this.danho = 10;
+		this.cooldown = 400;
+		this.cooldownFinal = cooldown;
 		Random ran = new Random();
 		int valor;
 		valor = ran.nextInt(Mapa.LIMITE_DER_X - this.getGrafico().getAncho());
@@ -22,13 +24,23 @@ public class SuperInfectado extends Infectado {
 
 	@Override
 	public void recibirDanho(float d) {
-		cargaViral -= d * 0.2;
+		cargaViral -= d * 0.05;
 		if (cargaViral <= 0) {
 			this.premio = this.premioRandom();
 			if (premio != null) {
 				this.juego.insertarLuego(premio);
 			}
 			juego.eliminarInfectado(this);
+		}
+	}
+
+	public void accionar() {
+		if (cargaViral > 0) {
+			this.mover();
+			this.disparar();
+			this.disparar();
+			this.disparar();
+			this.colisiones.detectarColision();
 		}
 	}
 

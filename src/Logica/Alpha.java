@@ -15,6 +15,8 @@ public class Alpha extends Infectado {
 		this.visitor = new VisitorAlpha(this);
 		this.grafico = new GraficoAlpha();
 		this.danho = 15;
+		this.cooldown = 300;
+		this.cooldownFinal = cooldown;
 		Random ran = new Random();
 		int valor;
 		valor = ran.nextInt(Mapa.LIMITE_DER_X - this.getGrafico().getAncho());

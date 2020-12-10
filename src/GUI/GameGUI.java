@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.Point;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -14,41 +15,87 @@ import Logica.Mapa;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JProgressBar;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GameGUI extends JFrame {
 
 	private Juego juego;
 	private JPanel contentPane;
 	private Mapa panelMapa;
+	private JPanel panelOpciones;
+	private JLabel nivelActual;
+	private JProgressBar progressBar;
+	private JButton botonReiniciar;
 
 	/*
 	 * Create the frame.
 	 */
 	public GameGUI() {
 		juego = new Juego(this);
+		panelMapa = juego.getMap();
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 802, 600);
+		setBounds(100, 100, 605, 669);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// ---------------- BARRA LATERAL DONDE VAN LAS OPCIONES ----------------
-		JPanel barra_opciones = new JPanel();
-		barra_opciones.setBounds(590, 0, 206, 571);
-
 		contentPane.add(juego.getMap());
 
-		contentPane.add(barra_opciones);
-		barra_opciones.setLayout(null);
-		
-		JLabel nivelActual = new JLabel("Nivel actual: "+juego.getNivelActual());
-		nivelActual.setBounds(0, 5, 206, 38);
-		barra_opciones.add(nivelActual);
+		panelOpciones = new JPanel();
+		panelOpciones.setBounds(0, 572, 599, 58);
+		contentPane.add(panelOpciones);
+		panelOpciones.setLayout(null);
+		panelOpciones.setBackground(Color.DARK_GRAY);
+
+		JLabel vidaJugador = new JLabel("Carga viral:");
+		vidaJugador.setForeground(Color.WHITE);
+		vidaJugador.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 15));
+		vidaJugador.setBounds(10, 3, 144, 23);
+		panelOpciones.add(vidaJugador);
+
+		nivelActual = new JLabel("Nivel actual:");
+		nivelActual.setForeground(Color.WHITE);
+		nivelActual.setFont(new Font("Consolas", Font.BOLD | Font.ITALIC, 15));
+		nivelActual.setBounds(228, 11, 144, 36);
+		panelOpciones.add(nivelActual);
+
+		progressBar = new JProgressBar(0, 100);
+		progressBar.setBounds(10, 24, 157, 23);
+		progressBar.setValue(0);
+		progressBar.setBackground(Color.GREEN);
+		panelOpciones.add(progressBar);
+
+		botonReiniciar = new JButton("Jugar de nuevo");
+		botonReiniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (botonReiniciar.isEnabled()) {
+					dispose();
+					GameGUI g = new GameGUI();
+					g.setLocationRelativeTo(null);
+					Thread t = new Thread(g.getJuego());
+					t.start();
+				}
+			}
+		});
+
+		botonReiniciar.setForeground(Color.BLACK);
+		botonReiniciar.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 14));
+		botonReiniciar.setBounds(409, 11, 157, 36);
+		botonReiniciar.setBackground(Color.LIGHT_GRAY);
+		botonReiniciar.setEnabled(false);
+		botonReiniciar.setVisible(false);
+		panelOpciones.add(botonReiniciar);
 
 		Jugador jugador = juego.getPlayer();
 		Grafico grafico_jugador = jugador.getGrafico();
@@ -58,18 +105,15 @@ public class GameGUI extends JFrame {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				Point posJugador = juego.getPlayer().getPosicion();
 				if (juego.isJuegoActivo()) {
 					int codigoTeclado = e.getKeyCode();
-	
-					if (codigoTeclado == KeyEvent.VK_LEFT || codigoTeclado == KeyEvent.VK_A) {
+
+					if (codigoTeclado == KeyEvent.VK_LEFT) {
 						juego.getPlayer().moverAIzquierda();
 					}
-					if (codigoTeclado == KeyEvent.VK_RIGHT || codigoTeclado == KeyEvent.VK_D) {
+					if (codigoTeclado == KeyEvent.VK_RIGHT) {
 						juego.getPlayer().moverADerecha();
 					}
-					posJugador.setLocation(juego.getPlayer().getX(), juego.getPlayer().getY());
-					grafico_jugador.setLocation(posJugador);
 				}
 			}
 
@@ -77,23 +121,8 @@ public class GameGUI extends JFrame {
 				int codigoTecla = e.getKeyCode();
 				if (juego.isJuegoActivo()) {
 					if (codigoTecla == KeyEvent.VK_SPACE) {
-							juego.generarDisparo(jugador.disparar());
+						juego.generarDisparo(jugador.disparar());
 					}
-				}
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-
-				switch (e.getKeyCode()) {
-//				case KeyEvent.VK_SPACE: {
-//					System.out.println("keo");
-//					juego.getPlayer().disparar();
-//					//disparar de jugador tiene que retornar proyectil
-//                    juego.generarDisparo(jugador.disparar());
-//                    System.out.print("booludaso");
-//					break;
-//				}
 				}
 			}
 		});
@@ -104,7 +133,7 @@ public class GameGUI extends JFrame {
 		return juego;
 	}
 
-	public int get_alto() {
+	public int getAlto() {
 		return panelMapa.getHeight();
 	}
 
@@ -112,8 +141,36 @@ public class GameGUI extends JFrame {
 		return panelMapa;
 	}
 
-	public int get_ancho() {
+	public int getAncho() {
 		return panelMapa.getWidth();
+	}
+
+	public void actualizarNivel() {
+		nivelActual.setText("Nivel actual: " + juego.getNivelActual());
+	}
+
+	public void actualizarVidaJugador(Jugador jugador) {
+		int vida = (int) jugador.getVida();
+		if (progressBar.getValue() > 70) {
+			progressBar.setBackground(Color.RED);
+		} else {
+			progressBar.setBackground(Color.GREEN);
+		}
+		progressBar.setValue(vida);
+		progressBar.repaint();
+	}
+
+	public void terminoJuego(boolean termino) {
+		if (termino) { // gano
+			panelMapa.gameWin();
+			JOptionPane.showMessageDialog(null, "Muy bien 10 felicitado", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+		} else { // perdio
+			panelMapa.gameOver();
+			JOptionPane.showMessageDialog(null, "Anda a jugar a la bolita", "¡Perdiste!",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+		botonReiniciar.setEnabled(true);
+		botonReiniciar.setVisible(true);
 	}
 
 	public static void main(String[] args) {
@@ -122,10 +179,10 @@ public class GameGUI extends JFrame {
 			@Override
 			public void run() {
 				GameGUI g = new GameGUI();
+				g.setLocationRelativeTo(null);
 				Thread t = new Thread(g.getJuego());
 				t.start();
 			}
 		});
 	}
-
 }

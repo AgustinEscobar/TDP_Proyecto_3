@@ -10,12 +10,13 @@ import Premio.Premio;
 public abstract class Infectado extends Personaje {
 	protected Particula particula;
 	protected int cooldown; // duracion
+	protected static int cooldownFinal;
 
 	public Infectado(Juego juego) {
 		super(juego);
 		this.cargaViral = 100;
 		this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
-		this.cooldown = 500;
+//		this.cooldown = 500;
 		this.particula = null;
 	}
 
@@ -61,10 +62,11 @@ public abstract class Infectado extends Personaje {
 
 	public void disparar() {
 		Particula particula;
+
 		if (this.cooldown == 0) {
 			particula = lanzarParticula();
 			particula.insertar_entidad();
-			this.cooldown = 500;
+			this.cooldown = cooldownFinal;
 		} else {
 			this.cooldown -= 1;
 		}

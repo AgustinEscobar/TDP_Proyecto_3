@@ -18,6 +18,7 @@ public class Jugador extends Personaje {
 		this.visitor = new VisitorJugador(this);
 		this.grafico = new GraficoJugador();
 		this.cargaViral = 0;
+		this.velocidad = 6;
 		this.danho = 20;
 		this.estado = new EstadoNormal(this);
 		arma = new Arma(new ProyectilSanitario(juego, this.grafico), this);
@@ -52,16 +53,15 @@ public class Jugador extends Personaje {
 	public void recibirDanho(float d) {
 		cargaViral += d;
 		if (cargaViral >= 100) {
-			System.out.println("jugador muerrto");
-			this.eliminar();
+			this.juego.terminoJuego(false);
 			this.getJuego().setJuegoActivo(false);
 		}
 	}
-	
+
 	public Estado getEstado() {
 		return estado;
 	}
-	
+
 	public Arma getArma() {
 		return arma;
 	}
@@ -72,13 +72,13 @@ public class Jugador extends Personaje {
 
 	public void moverADerecha() {
 		if (grafico.getX() < limiteDer) {
-			grafico.setLocation(grafico.getX() + 6, grafico.getY());
+			grafico.setLocation(grafico.getX() + velocidad, grafico.getY());
 		}
 	}
 
 	public void moverAIzquierda() {
 		if (grafico.getX() > limiteIzq) {
-			grafico.setLocation(grafico.getX() - 6, grafico.getY());
+			grafico.setLocation(grafico.getX() - velocidad, grafico.getY());
 		}
 	}
 
