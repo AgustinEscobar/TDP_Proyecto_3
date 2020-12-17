@@ -14,7 +14,7 @@ public class Alpha extends Infectado {
 		super(juego);
 		this.visitor = new VisitorAlpha(this);
 		this.grafico = new GraficoAlpha();
-		this.danho = 15;
+		this.danho = 20;
 		this.cooldown = 300;
 		this.cooldownFinal = cooldown;
 		Random ran = new Random();
@@ -46,6 +46,7 @@ public class Alpha extends Infectado {
 		} else
 			this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
 	}
+
 
 	@Override
 	public void aceptar(Visitor v) {

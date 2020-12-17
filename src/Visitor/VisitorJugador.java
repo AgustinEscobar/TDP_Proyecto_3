@@ -2,6 +2,7 @@ package Visitor;
 
 import Estado.EstadoEfectoTemporal;
 import Estado.EstadoPremioPrecioso;
+import Estado.EstadoSuperArmaSanitaria;
 import Logica.Alpha;
 import Logica.Beta;
 import Logica.Entidad;
@@ -9,6 +10,8 @@ import Logica.Jugador;
 import Logica.SuperInfectado;
 import Premio.EfectoTemporal;
 import Premio.ObjetoPrecioso;
+import Premio.PremioCuarentenaObligatoria;
+import Premio.PremioSuperArmaSanitaria;
 
 public class VisitorJugador extends Visitor {
 	protected Jugador jugador;
@@ -41,11 +44,9 @@ public class VisitorJugador extends Visitor {
 		premio.eliminar();
 	}
 
-	/**
-	 * bomba
-	 */
-	public void visitPremioTemporal(EfectoTemporal premio) {
-		jugador.setEstado(new EstadoEfectoTemporal(jugador));
+
+	
+	public void visitCuarentenaObligatoria(PremioCuarentenaObligatoria premio) {
 		for (Entidad e : jugador.getJuego().entidades()) {
 			e.aceptar(premio.getVisitor());
 		}

@@ -16,7 +16,7 @@ public class Particula extends Entidad {
 		this.movimiento = new MovimientoVertical(this, MovimientoVertical.ABAJO);
 		this.grafico = new GraficoParticula();
 		this.grafico.setLocation(infectado.getGrafico().getX() + infectado.getGrafico().getAncho() / 2,
-				infectado.getGrafico().getY() + infectado.getGrafico().getAlto());
+		infectado.getGrafico().getY() + infectado.getGrafico().getAlto());
 		this.velocidad = 10;
 		rango = 100;
 	}
@@ -27,7 +27,11 @@ public class Particula extends Entidad {
 
 	@Override
 	public void accionar() {
-		if (rango == 0 || this.grafico.getLocation().getY() >= Mapa.LIMITE_INFERIOR) {
+		if (this.grafico.getLocation().getY() >= Mapa.LIMITE_INFERIOR-10) {
+			this.eliminar();
+			this.getGrafico().setVisible(false);
+		}
+		if (rango == 0 ) {
 			this.rango = 100;
 			this.eliminar();
 		} else {
@@ -36,6 +40,7 @@ public class Particula extends Entidad {
 			this.colisiones.detectarColision();
 		}
 	}
+
 
 	@Override
 	public void aceptar(Visitor v) {

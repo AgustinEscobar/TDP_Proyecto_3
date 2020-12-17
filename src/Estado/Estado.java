@@ -5,15 +5,12 @@ import Logica.Proyectil;
 
 public abstract class Estado {
 	protected Jugador jugador;
-	protected int velocidadJugador;
 
 	public Estado(Jugador jugador) {
 		this.jugador = jugador;
 	}
 
-	public int getVelocidadJugador() {
-		return velocidadJugador;
-	}
+
 	
 	public abstract Proyectil getProyectil();
 	

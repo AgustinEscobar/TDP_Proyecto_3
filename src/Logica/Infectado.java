@@ -6,6 +6,8 @@ import Movimiento.MovimientoVertical;
 import Premio.EfectoTemporal;
 import Premio.ObjetoPrecioso;
 import Premio.Premio;
+import Premio.PremioCuarentenaObligatoria;
+import Premio.PremioSuperArmaSanitaria;
 
 public abstract class Infectado extends Personaje {
 	protected Particula particula;
@@ -37,10 +39,14 @@ public abstract class Infectado extends Personaje {
 		valor = ran.nextInt(5);
 		Premio retorno = null;
 		if (valor == 0) {
-			retorno = new EfectoTemporal(juego, this);
+			retorno = new PremioCuarentenaObligatoria(juego, this);
 		} else {
 			if (valor == 1) {
 				retorno = new ObjetoPrecioso(juego, this);
+			}
+			else {
+				if (valor==2)
+					retorno= new PremioSuperArmaSanitaria(juego,this);
 			}
 		}
 		return retorno;
